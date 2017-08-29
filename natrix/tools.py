@@ -5,8 +5,8 @@ Created on Tue Aug 29 15:01:37 2017
 @author: Lorango
 """
 
-import sys
-import inspect
+#import sys
+#import inspect
 import pygame
 
 import tmx

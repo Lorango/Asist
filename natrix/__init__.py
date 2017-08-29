@@ -34,8 +34,13 @@ pink = pygame.Color(255, 0, 110)
 
 
 class Controller():
+    """Docstring
+
+    """
     screen = pygame.display.set_mode((800, 480))
     clock = pygame.time.Clock()
+
+    group = natrix.sprite.Group()
 
 #    event_group = pygame.sprite.LayeredUpdates()
 #    collision_group_1 = pygame.sprite.Group()
@@ -52,7 +57,26 @@ class Controller():
 #    font = pygame.font.Font(None, 24)
 
     @classmethod
+    def step(cls):
+        """Docstring
+
+        """
+        for sprite in cls.group:
+            sprite.step()
+
+    @classmethod
+    def draw(cls):
+        """Docstring
+
+        """
+        cls.screen.fill(natrix.yellow)
+        cls.group.draw(natrix.Controller.screen)
+
+    @classmethod
     def go_to_room(cls, name):
+        """Docstring
+
+        """
         #  go tu grup
         cls.room_active = cls.rooms[name]
 

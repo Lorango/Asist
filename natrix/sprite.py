@@ -6,57 +6,114 @@ Created on Tue Aug 29 14:42:16 2017
 """
 
 import pygame
-import natrix.tools
+import natrix
 
 
-class Primitive(pygame.sprite.Sprite):
-    def __init__(self, rect=(0, 0, 80, 80), image=None, layer=300):
-        pygame.sprite.Sprite.__init__(self)
+class Primitive():
+    """Docstring
 
+    """
+    def __init__(self, rect=(0, 0, 80, 80), image=None):
         self.rect = pygame.Rect(rect)
-        self.rect_org = self.rect.copy()
-
         self.image = pygame.Surface(self.rect.size)
-        self.image.fill(natrix.tools.gray)
+        self.image.fill(natrix.gray)
 
-        self._layer = layer
+    def step(self):
+        """Docstring
 
-        natrix.tools.Controler.event_group.add(self)
-
-    def draw(self, surface):
-        return surface.blit(self.image, self.rect.topleft)
+        """
+        pass
 
     def lmb_down(self):
-        print('Go')
+        """Docstring
+
+        """
         pass
 
     def lmb_up(self):
+        """Docstring
+
+        """
         pass
 
 
-class Grupa:
+class Sprite(Primitive):
+    """Docstring
+
+    """
+    def __init__(self, rect, image):
+        Primitive.__init__(self, rect, image)
+
+        self.groups = []
+
+    def __repr__(self):
+        """Docstring
+
+        """
+        return '<{} sprite(in {} groups)>'.format(self.__class__.__name__,
+                                                  len(self.groups))
+
+
+class Group:
+    """Docstring
+
+    """
     def __init__(self):
-        self.sprites_list = []
+        self.sprites = []
         pass
 
     def __iter__(self):
-        return iter(self.sprites_list)
+        """Docstring
+
+        """
+        return iter(self.sprites)
+
+    def __len__(self):
+        """return number of sprites in group
+
+        Group.len(group): return int
+
+        Returns the number of sprites contained in the group.
+
+        """
+        return len(self.sprites)
+
+    def __repr__(self):
+        """Docstring
+
+        """
+        return '<{}({} sprites)>'.format(self.__class__.__name__, len(self))
 
     def add(self, sprite):
-        self.sprites_list.append(sprite)
-        pass
+        """Docstring
+
+        """
+        if sprite not in self.sprites:
+            self.sprites.append(sprite)
+
+        if self not in sprite.groups:
+            sprite.groups.append(self)
 
     def remove(self):
+        """Docstring
+
+        """
         # WIP
         pass
 
     def empty(self):
-        self.sprites_list = []
+        """Docstring
+
+        """
+        self.sprites = []
         pass
 
     def draw(self, surface):
-        for i in self.sprites_list:
+        """Docstring
+
+        """
+        for i in self.sprites:
             x, y = i.rect.topleft
-            x -= natrix.tools.Controler.camera.rect.left
-            y -= natrix.tools.Controler.camera.rect.top
+#            x -= natrix.tools.Controler.camera.rect.left
+#            y -= natrix.tools.Controler.camera.rect.top
             surface.blit(i.image, (x, y))
