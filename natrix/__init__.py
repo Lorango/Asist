@@ -13,8 +13,6 @@ import pygame
 import natrix.tools
 import natrix.sprite
 
-#pygame.font.init()
-
 black = pygame.Color(0, 0, 0)
 gray = pygame.Color(110, 110, 110)
 white = pygame.Color(255, 255, 255)
@@ -40,21 +38,9 @@ class Controller():
     screen = pygame.display.set_mode((800, 480))
     clock = pygame.time.Clock()
 
-    group = natrix.sprite.Group()
-
-#    event_group = pygame.sprite.LayeredUpdates()
-#    collision_group_1 = pygame.sprite.Group()
-#
-#    rooms = {}
-#    room_active = None
-#
-#    klase = {}
-#    funkcije = {}
-#
-#    m1 = [0, 0]
-#    x_offset = 0
-
-#    font = pygame.font.Font(None, 24)
+    camera = natrix.tools.Camera()
+#    group = natrix.sprite.Group()
+    group = natrix.sprite.GroupCamera()
 
     @classmethod
     def step(cls):
@@ -70,6 +56,7 @@ class Controller():
 
         """
         cls.screen.fill(natrix.yellow)
+        cls.camera.update()
         cls.group.draw(natrix.Controller.screen)
 
     @classmethod
@@ -86,19 +73,3 @@ class Controller():
 
         cls.room_active.load()
         cls.event_group.add(cls.room_active.objekti)
-
-#    @classmethod
-#    def prikupi_cls_fun(cls, modul):
-#        """
-#        Izlista sve klase i funkcije u fajlu
-#        """
-#        for name, member in inspect.getmembers(sys.modules[modul.__name__]):
-#            if inspect.isclass(member):
-#                cls.klase[member.__name__] = member
-#                #  Dvaput je printanje jer inače printa čudesa ili hiti eror.
-#                print(member, member.__name__)
-#
-#            elif inspect.isfunction(member):
-#                cls.funkcije[member.__name__] = member
-#                #  Dvaput je printanje jer inače printa čudesa ili hiti eror.
-#                print(member, member.__name__)

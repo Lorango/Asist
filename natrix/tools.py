@@ -5,8 +5,6 @@ Created on Tue Aug 29 15:01:37 2017
 @author: Lorango
 """
 
-#import sys
-#import inspect
 import pygame
 
 import tmx
@@ -70,19 +68,19 @@ class Room():
 
 
 class Camera():
+    """Docstring
+
+    """
     def __init__(self):
         self.rect = pygame.Rect(0, 0, 800, 480)
-        # trenutno nepotrebna funkcionalnost
-        self.offset = pygame.Rect(0, 0, 800, 480)
+        self.mode = 2
+        self.sprite = None
 
-    # trenutno nepotrebna funkcionalnost
-    def apply(self, sprite):
-        x = -sprite.rect.left + self.rect.left
-        return (x, sprite.rect.top)
+    def update(self):
+        """Docstring
 
-    # trenutno nepotrebna funkcionalnost
-    def follow(self, sprite):
-        x, y = sprite.rect.topleft
-        x += (-self.rect.width + sprite.rect.width)//2 + self.offset.left
-        y += (-self.rect.height + sprite.rect.height)//2 + self.offset.top
-        self.rect.topleft = (x, y)
+        """
+        if self.mode == 1:
+            self.rect.center = pygame.mouse.get_pos()
+        elif self.mode == 2 and self.sprite is not None:
+            self.rect.center = self.sprite.rect.center

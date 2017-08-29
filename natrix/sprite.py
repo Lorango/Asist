@@ -114,6 +114,22 @@ class Group:
         """
         for i in self.sprites:
             x, y = i.rect.topleft
-#            x -= natrix.tools.Controler.camera.rect.left
-#            y -= natrix.tools.Controler.camera.rect.top
+            surface.blit(i.image, (x, y))
+
+
+class GroupCamera(Group):
+    """Docstring
+
+    """
+    def __init__(self):
+        Group.__init__(self)
+
+    def draw(self, surface):
+        """Docstring
+
+        """
+        for i in self.sprites:
+            x, y = i.rect.topleft
+            x -= natrix.Controller.camera.rect.left
+            y -= natrix.Controller.camera.rect.top
             surface.blit(i.image, (x, y))

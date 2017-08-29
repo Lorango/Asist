@@ -20,7 +20,6 @@ for j in range(4):
 class Dummy(natrix.sprite.Sprite):
     def __init__(self, rect, image):
         natrix.sprite.Sprite.__init__(self, rect, image)
-        print('kita')
         self.speed = 5
 
     def step(self):
@@ -31,6 +30,7 @@ class Dummy(natrix.sprite.Sprite):
 a = Dummy((110, 100, 100, 50), None)
 g.add(a)
 natrix.Controller.group.add(a)
+natrix.Controller.camera.sprite = a
 
 #  Main loop.
 while True:
@@ -40,7 +40,6 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
 
     natrix.Controller.step()
     natrix.Controller.draw()
