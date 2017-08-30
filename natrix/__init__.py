@@ -12,6 +12,7 @@ Modul sadrši funkcionalnosti za stvaranje soba, kamera i slično.
 import pygame
 import natrix.tools
 import natrix.sprite
+import natrix.gui
 
 black = pygame.Color(0, 0, 0)
 gray = pygame.Color(110, 110, 110)
@@ -41,6 +42,7 @@ class Controller():
     camera = natrix.tools.Camera()
 #    group = natrix.sprite.Group()
     group = natrix.sprite.GroupCamera()
+    group_gui = natrix.sprite.Group()
 
     @classmethod
     def step(cls):
@@ -50,14 +52,18 @@ class Controller():
         for sprite in cls.group:
             sprite.step()
 
+        for sprite in cls.group_gui:
+            sprite.step()
+
     @classmethod
     def draw(cls):
         """Docstring
 
         """
-        cls.screen.fill(natrix.yellow)
+        cls.screen.fill(yellow)
         cls.camera.update()
-        cls.group.draw(natrix.Controller.screen)
+        cls.group.draw(cls.screen)
+        cls.group_gui.draw(cls.screen)
 
     @classmethod
     def go_to_room(cls, name):

@@ -32,6 +32,8 @@ g.add(a)
 natrix.Controller.group.add(a)
 natrix.Controller.camera.sprite = a
 
+natrix.Controller.group_gui.add(natrix.gui.Button((10, 10, 50, 50), natrix.gui.kobila, {'a': 2, 'b': 3}))
+
 #  Main loop.
 while True:
     natrix.Controller.clock.tick(30)
@@ -40,6 +42,13 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+
+        if event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:
+                for sprite in natrix.Controller.group_gui:
+                    if sprite.rect.collidepoint(event.pos):
+                        sprite.lmb_up()
+                        break
 
     natrix.Controller.step()
     natrix.Controller.draw()
