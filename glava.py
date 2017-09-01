@@ -22,10 +22,14 @@ class Dummy(natrix.sprite.Sprite):
         natrix.sprite.Sprite.__init__(self, rect, image)
         self.speed = 5
 
+        self.string_var = natrix.gui.StringVar(self.rect.left)
+
     def step(self):
         self.rect.move_ip(self.speed, 0)
         if self.rect.left < 100 or self.rect.left > 600:
             self.speed *= -1
+
+        self.string_var._set(self.rect.left)
 
 a = Dummy((110, 100, 100, 50), None)
 g.add(a)
@@ -33,6 +37,8 @@ natrix.Controller.group.add(a)
 natrix.Controller.camera.sprite = a
 
 natrix.Controller.group_gui.add(natrix.gui.Button((10, 10, 50, 50), natrix.gui.kobila, {'a': 2, 'b': 3}))
+natrix.Controller.group_gui.add(natrix.gui.Label())
+natrix.Controller.group_gui.add(natrix.gui.Label((10, 100, 10, 10), string_var = a.string_var))
 
 #  Main loop.
 while True:

@@ -14,6 +14,9 @@ import natrix.tools
 import natrix.sprite
 import natrix.gui
 
+pygame.font.init()
+font_def = pygame.font.Font(None, 50)
+
 black = pygame.Color(0, 0, 0)
 gray = pygame.Color(110, 110, 110)
 white = pygame.Color(255, 255, 255)

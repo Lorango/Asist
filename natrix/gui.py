@@ -8,8 +8,47 @@ Created on Fri Aug 18 17:07:10 2017
 
 import natrix
 
+
 def kobila(a, b=1):
     print(a, b)
+
+
+class StringVar():
+    def __init__(self, value='stringvar'):
+        self.value = str(value)
+        self._set(value)
+
+    def _set(self, value='stringvar'):
+        self.value = str(value)
+
+    def get(self):
+        return self.value
+
+
+class Label(natrix.sprite.Sprite):
+    """Docstring
+
+    """
+    def __init__(self, rect=(0, 0, 80, 80), text='label', string_var=None):
+        natrix.sprite.Sprite.__init__(self, rect, None)
+
+        self.text = str(text)
+        self.string_var = string_var
+
+        self.image = natrix.font_def.render(text, False,
+                                            natrix.blue)
+
+        self.rect.size = self.image.get_rect().size
+
+    def step(self):
+        """Docstring
+
+        """
+        if self.string_var is not None:
+            self.image = natrix.font_def.render(self.string_var.get(), False,
+                                                natrix.blue)
+            self.rect.size = self.image.get_rect().size
+
 
 class Button(natrix.sprite.Sprite):
     """Služi kao gui objekt čijom se aktivacijum izvršava zadana funkcija.
