@@ -15,8 +15,12 @@ class Primitive():
     """
     def __init__(self, rect=(0, 0, 80, 80), image=None):
         self.rect = pygame.Rect(rect)
-        self.image = pygame.Surface(self.rect.size)
-        self.image.fill(natrix.gray)
+        if image is None:
+            self.image = pygame.Surface(self.rect.size)
+            self.image.fill(natrix.gray)
+        else:
+            self.image = image
+            self.rect.size = self.image.get_rect().size
 
     def step(self):
         """Docstring

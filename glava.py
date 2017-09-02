@@ -9,6 +9,8 @@ import sys
 import pygame
 import natrix
 
+img_cat = pygame.image.load('data/images/cat.png')
+
 g = natrix.sprite.Group()
 
 for j in range(4):
@@ -36,7 +38,7 @@ g.add(a)
 natrix.Controller.group.add(a)
 natrix.Controller.camera.sprite = a
 
-natrix.Controller.group_gui.add(natrix.gui.Button((10, 10, 50, 50), natrix.gui.kobila, {'a': 2, 'b': 3}))
+natrix.Controller.group_gui.add(natrix.gui.Button((10, 10, 50, 50), natrix.gui.kobila, {'a': 2, 'b': 3}, img_cat))
 natrix.Controller.group_gui.add(natrix.gui.Label())
 natrix.Controller.group_gui.add(natrix.gui.Label((10, 100, 10, 10), string_var = a.string_var))
 

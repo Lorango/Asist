@@ -14,6 +14,9 @@ def kobila(a, b=1):
 
 
 class StringVar():
+    """Docstring
+        kokoša **je mala**
+    """
     def __init__(self, value='stringvar'):
         self.value = str(value)
         self._set(value)
@@ -81,9 +84,9 @@ class Button(natrix.sprite.Sprite):
 
     a : asd
     """
-    def __init__(self, rect=(0, 0, 80, 80), function=print, args={}):
+    def __init__(self, rect=(0, 0, 80, 80), function=print, args={}, image=None):
 
-        natrix.sprite.Sprite.__init__(self, rect, None)
+        natrix.sprite.Sprite.__init__(self, rect, image)
 
         self.function = function
         self.args = args
