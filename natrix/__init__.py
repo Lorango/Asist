@@ -14,6 +14,8 @@ import natrix.tools
 import natrix.sprite
 import natrix.gui
 
+print('Test za vidit nastavak glavne grane "main branch"')
+
 pygame.font.init()
 font_def = pygame.font.Font(None, 50)
 
