@@ -37,51 +37,30 @@ purple = pygame.Color(110, 0, 255)
 magenta = pygame.Color(255, 0, 255)
 pink = pygame.Color(255, 0, 110)
 
+screen = pygame.display.set_mode((800, 480))
+clock = pygame.time.Clock()
 
-class Controller():
+camera = natrix.tools.Camera()
+
+group = natrix.sprite.GroupCamera()
+group_gui = natrix.sprite.Group()
+
+
+def step():
     """Docstring
 
     """
-    screen = pygame.display.set_mode((800, 480))
-    clock = pygame.time.Clock()
+    for sprite in group:
+        sprite.step()
 
-    camera = natrix.tools.Camera()
-#    group = natrix.sprite.Group()
-    group = natrix.sprite.GroupCamera()
-    group_gui = natrix.sprite.Group()
+    for sprite in group_gui:
+        sprite.step()
 
-    @classmethod
-    def step(cls):
-        """Docstring
+def draw():
+    """Docstring
 
-        """
-        for sprite in cls.group:
-            sprite.step()
-
-        for sprite in cls.group_gui:
-            sprite.step()
-
-    @classmethod
-    def draw(cls):
-        """Docstring
-
-        """
-        cls.screen.fill(yellow)
-        cls.camera.update()
-        cls.group.draw(cls.screen)
-        cls.group_gui.draw(cls.screen)
-
-    @classmethod
-    def go_to_room(cls, name):
-        """Docstring
-
-        """
-        #  go tu grup
-        cls.room_active = cls.rooms[name]
-
-        # isprazni event_group
-        for sprite in cls.event_group:
-            cls.event_group.remove()
-
-        cls.room_active.load()
-        cls.event_group.add(cls.room_active.objekti)
+    """
+    screen.fill(yellow)
+    camera.update()
+    group.draw(screen)
+    group_gui.draw(screen)

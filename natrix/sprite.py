@@ -134,6 +134,6 @@ class GroupCamera(Group):
         """
         for i in self.sprites:
             x, y = i.rect.topleft
-            x -= natrix.Controller.camera.rect.left
-            y -= natrix.Controller.camera.rect.top
+            x -= natrix.camera.rect.left
+            y -= natrix.camera.rect.top
             surface.blit(i.image, (x, y))
