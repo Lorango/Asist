@@ -84,9 +84,9 @@ class Button(natrix.sprite.Sprite):
 
     a : asd
     """
-    def __init__(self, rect=(0, 0, 80, 80), function=print, args={}, image=None):
+    def __init__(self, rect=(0, 0, 80, 80), function=print, args={}, image_name=None):
 
-        natrix.sprite.Sprite.__init__(self, rect, image)
+        natrix.sprite.Sprite.__init__(self, rect, image_name)
 
         self.function = function
         self.args = args

@@ -19,7 +19,7 @@ font_def = pygame.font.Font(None, 50)
 
 print('Test za vidit koliko puti će se učitat natrix modul.')
 
-
+#  Boje
 black = pygame.Color(0, 0, 0)
 gray = pygame.Color(110, 110, 110)
 white = pygame.Color(255, 255, 255)
@@ -37,8 +37,11 @@ purple = pygame.Color(110, 0, 255)
 magenta = pygame.Color(255, 0, 255)
 pink = pygame.Color(255, 0, 110)
 
+#  Kontrolne varijable
 screen = pygame.display.set_mode((800, 480))
 clock = pygame.time.Clock()
+
+images = {}
 
 camera = natrix.tools.Camera()
 
@@ -56,6 +59,7 @@ def step():
     for sprite in group_gui:
         sprite.step()
 
+
 def draw():
     """Docstring
 
@@ -64,3 +68,14 @@ def draw():
     camera.update()
     group.draw(screen)
     group_gui.draw(screen)
+
+
+def load_image(path='data/images/cat.png'):
+    """Docstring
+
+    """
+    if path not in images.keys():
+        print('Ucitano')
+        surface = pygame.image.load(path)
+        images[path] = surface
+        return images[path]

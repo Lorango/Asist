@@ -13,13 +13,13 @@ class Primitive():
     """Docstring
 
     """
-    def __init__(self, rect=(0, 0, 80, 80), image=None):
+    def __init__(self, rect=(0, 0, 80, 80), image_name=None):
         self.rect = pygame.Rect(rect)
-        if image is None:
+        if image_name is None:
             self.image = pygame.Surface(self.rect.size)
             self.image.fill(natrix.gray)
         else:
-            self.image = image
+            self.image = natrix.images[image_name]
             self.rect.size = self.image.get_rect().size
 
     def step(self):
@@ -45,8 +45,8 @@ class Sprite(Primitive):
     """Docstring
 
     """
-    def __init__(self, rect, image):
-        Primitive.__init__(self, rect, image)
+    def __init__(self, rect, image_name):
+        Primitive.__init__(self, rect, image_name)
 
         self.groups = []
 

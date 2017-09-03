@@ -9,7 +9,7 @@ import sys
 import pygame
 import natrix
 
-img_cat = pygame.image.load('data/images/cat.png')
+natrix.load_image('data/images/cat.png')
 
 g = natrix.sprite.Group()
 
@@ -20,8 +20,8 @@ for j in range(4):
 
 
 class Dummy(natrix.sprite.Sprite):
-    def __init__(self, rect, image):
-        natrix.sprite.Sprite.__init__(self, rect, image)
+    def __init__(self, rect, image_name):
+        natrix.sprite.Sprite.__init__(self, rect, image_name)
         self.speed = 5
 
         self.string_var = natrix.gui.StringVar(self.rect.left)
@@ -38,7 +38,7 @@ g.add(a)
 natrix.group.add(a)
 natrix.camera.sprite = a
 
-natrix.group_gui.add(natrix.gui.Button((10, 10, 50, 50), natrix.gui.kobila, {'a': 2, 'b': 3}, img_cat))
+natrix.group_gui.add(natrix.gui.Button((10, 10, 50, 50), natrix.gui.kobila, {'a': 2, 'b': 3}, 'data/images/cat.png'))
 natrix.group_gui.add(natrix.gui.Label())
 natrix.group_gui.add(natrix.gui.Label((10, 100, 10, 10), string_var=a.string_var))
 
