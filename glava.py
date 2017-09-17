@@ -10,6 +10,7 @@ import pygame
 import natrix
 
 natrix.load_image('data/images/cat.png')
+natrix.load_image(path='data/images/brendan.png')
 
 g = natrix.sprite.Group()
 
@@ -42,9 +43,18 @@ natrix.group_gui.add(natrix.gui.Button((10, 10, 50, 50), natrix.gui.kobila, {'a'
 natrix.group_gui.add(natrix.gui.Label())
 natrix.group_gui.add(natrix.gui.Label((10, 100, 10, 10), string_var=a.string_var))
 
+print(natrix.make_sprite(sprite_name='test'))
+ass = natrix.Ss('test2')
+
+natrix.group_ss.add(natrix.sprite.SpriteSs(ass))
+
 #  Main loop.
+t=0
 while True:
     natrix.clock.tick(30)
+    t += 1
+    if t > 2:
+        t = 0
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -60,5 +70,9 @@ while True:
 
     natrix.step()
     natrix.draw()
+    for i, sprite in enumerate(natrix.sprites['test']):
+        natrix.screen.blit(sprite, (200, 100+i*100))
+
+    ass.draw((300, 10), t)
 
     pygame.display.update()

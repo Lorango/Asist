@@ -57,6 +57,51 @@ class Sprite(Primitive):
         return '<{} sprite(in {} groups)>'.format(self.__class__.__name__,
                                                   len(self.groups))
 
+class SpriteSs:
+    """Docstring
+
+    """
+    def __init__(self, sprite):
+        self.rect = sprite.rect.copy()
+        self.sprite = sprite
+
+        self.groups = []
+
+        self.rect.topleft = (100,100)
+
+        self.image_index = 0
+        self.counter = 0
+
+    def step(self):
+        """Docstring
+            kod ki mjenja image_indeks se more premestit i u specijalnu _step()
+            metodu koju poziva step() metoda.
+        """
+        if self.counter == self.sprite.speed - 1:
+            self.image_index = (self.image_index + 1) % self.sprite.subimages
+
+        self.counter = (self.counter + 1) % self.sprite.speed
+
+
+    def lmb_down(self):
+        """Docstring
+
+        """
+        pass
+
+    def lmb_up(self):
+        """Docstring
+
+        """
+        pass
+
+
+    def __repr__(self):
+        """Docstring
+
+        """
+        return '<{} sprite(in {} groups)>'.format(self.__class__.__name__,
+                                                  len(self.groups))
 
 class Group:
     """Docstring
@@ -137,3 +182,21 @@ class GroupCamera(Group):
             x -= natrix.camera.rect.left
             y -= natrix.camera.rect.top
             surface.blit(i.image, (x, y))
+
+
+class GroupCameraSs(Group):
+    """Docstring
+
+    """
+    def __init__(self):
+        Group.__init__(self)
+
+    def draw(self):
+        """Docstring
+
+        """
+        for i in self.sprites:
+            x, y = i.rect.topleft
+#            x -= natrix.camera.rect.left
+#            y -= natrix.camera.rect.top
+            i.sprite.draw((x, y), i.image_index)
