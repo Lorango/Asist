@@ -6,10 +6,12 @@ Created on Fri Aug 18 17:07:10 2017
 
 """
 
+import pygame
 import natrix
 
 
 def kobila(a, b=1):
+    pygame.mouse.set_pos([0, 0])
     print(a, b)
 
 
@@ -28,12 +30,12 @@ class StringVar():
         return self.value
 
 
-class Label(natrix.sprite.Sprite):
+class Label(natrix.predmet.Predmet):
     """Docstring
 
     """
     def __init__(self, rect=(0, 0, 80, 80), text='label', string_var=None):
-        natrix.sprite.Sprite.__init__(self, rect, None)
+        natrix.predmet.Predmet.__init__(self, rect, None)
 
         self.text = str(text)
         self.string_var = string_var
@@ -53,7 +55,7 @@ class Label(natrix.sprite.Sprite):
             self.rect.size = self.image.get_rect().size
 
 
-class Button(natrix.sprite.Sprite):
+class Button(natrix.predmet.Predmet):
     """Služi kao gui objekt čijom se aktivacijum izvršava zadana funkcija.
 
     .. note:: Deprecated in NumPy 1.6.0
@@ -86,7 +88,7 @@ class Button(natrix.sprite.Sprite):
     """
     def __init__(self, rect=(0, 0, 80, 80), function=print, args={}, image_name=None):
 
-        natrix.sprite.Sprite.__init__(self, rect, image_name)
+        natrix.predmet.Predmet.__init__(self, rect, image_name)
 
         self.function = function
         self.args = args

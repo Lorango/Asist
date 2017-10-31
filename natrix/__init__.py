@@ -11,7 +11,7 @@ Modul sadrši funkcionalnosti za stvaranje soba, kamera i slično.
 
 import pygame
 import natrix.tools
-import natrix.sprite
+import natrix.predmet
 import natrix.gui
 
 pygame.font.init()
@@ -46,23 +46,23 @@ sprites = {}
 
 camera = natrix.tools.Camera()
 
-group = natrix.sprite.GroupCamera()
-group_ss = natrix.sprite.GroupCameraSs()
-group_gui = natrix.sprite.Group()
+group = natrix.predmet.GroupCamera()
+group_sprite = natrix.predmet.GroupCameraSprite()
+group_gui = natrix.predmet.Group()
 
 
 def step():
     """Docstring
 
     """
-    for sprite in group:
-        sprite.step()
+    for predmet in group:
+        predmet.step()
 
-    for sprite in group_ss:
-        sprite.step()
+    for predmet in group_sprite:
+        predmet._step()
 
-    for sprite in group_gui:
-        sprite.step()
+    for predmet in group_gui:
+        predmet.step()
 
 
 def draw():
@@ -72,7 +72,7 @@ def draw():
     screen.fill(yellow)
     camera.update()
     group.draw(screen)
-    group_ss.draw()
+    group_sprite.draw()
     group_gui.draw(screen)
 
 
@@ -87,36 +87,14 @@ def load_image(path='data/images/cat.png'):
         return images[path]
 
 
-def make_sprite(sprite_name, image_name='data/images/brendan.png',
-                rect=(0, 0, 14, 21), n=3):
-
-    """Docstring
-
-    .. note::  Obustavljeno
-        funkcija `make_sprite` će biti pobrisana u budućnosti.
-
-    """
-    if sprite_name not in sprites.keys():
-        print('Ucitano')
-        sprite = []
-        rect = pygame.Rect(rect)
-        for i in range(n):
-            surface = pygame.Surface(rect.size).convert_alpha()
-            surface.fill((0, 0, 0, 63))
-            surface.blit(images[image_name], (0, 0), rect.move(14*i,0))
-            surface = pygame.transform.scale2x(surface)
-            surface = pygame.transform.scale2x(surface)
-            sprite.append(surface)
-        sprites[sprite_name] = sprite
-        return sprite
-
-
-class Ss:
+class Sprite:
     """Docstring
     Sadrži podatke kako blitat sprite sa slike na ekran.
 
     """
-    def __init__(self,sprite_name, image_name='data/images/brendan.png', rect=(0, 0, 14, 21), n=3):
+    def __init__(self, sprite_name, image_name='data/images/brendan.png',
+                 rect=(0, 0, 14, 21), n=3):
+
         self.name = sprite_name
         self.image_name = image_name
         self.rect = pygame.Rect(rect)
@@ -128,10 +106,6 @@ class Ss:
         Blita direktno sa slike na ekran.
 
         """
-        screen.blit(images[self.image_name], topleft, self.rect.move(14*i, 0))
+        screen.blit(images[self.image_name], topleft,
+                    self.rect.move(self.rect.width*i, 0))
         pass
-
-
-
-
-

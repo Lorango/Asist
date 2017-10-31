@@ -7,7 +7,7 @@ Created on Tue Aug 29 15:01:37 2017
 
 import pygame
 
-import tmx
+#import tmx
 
 
 def foo():
@@ -70,11 +70,20 @@ class Room():
 class Camera():
     """Docstring
 
+    mode = 0
+    Kamera isključena
+
+    mode = 1
+    Kamera prati miš
+
+    mode = 2
+    Kamera instancu klase (predmet)
+
     """
-    def __init__(self):
+    def __init__(self, mode = 0):
         self.rect = pygame.Rect(0, 0, 800, 480)
-        self.mode = 2
-        self.sprite = None
+        self.mode = mode
+        self.predmet = None
 
     def update(self):
         """Docstring
@@ -82,5 +91,5 @@ class Camera():
         """
         if self.mode == 1:
             self.rect.center = pygame.mouse.get_pos()
-        elif self.mode == 2 and self.sprite is not None:
-            self.rect.center = self.sprite.rect.center
+        elif self.mode == 2 and self.predmet is not None:
+            self.rect.center = self.predmet.rect.center
