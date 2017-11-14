@@ -14,6 +14,7 @@ import natrix.tools
 import natrix.predmet
 import natrix.gui
 
+
 pygame.font.init()
 font_def = pygame.font.Font(None, 50)
 
@@ -81,7 +82,6 @@ def load_image(path='data/images/cat.png'):
 
     """
     if path not in images.keys():
-        print('Ucitano')
         surface = pygame.image.load(path).convert_alpha()
         images[path] = surface
         return images[path]
