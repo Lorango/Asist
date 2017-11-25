@@ -106,6 +106,13 @@ class Sprite:
         Blita direktno sa slike na ekran.
 
         """
+#        screen.blit(images[self.image_name], topleft,
+#                    self.rect.move(self.rect.width*i, 0))
+
+        dim = images[self.image_name].get_size()
+        jkl = (dim[0] // self.rect.width, dim[1] // self.rect.height)
+        x = self.rect.width*(i % jkl[0])
+        y = self.rect.height*(i // jkl[0])
         screen.blit(images[self.image_name], topleft,
-                    self.rect.move(self.rect.width*i, 0))
+                    self.rect.move(x, y))
         pass
