@@ -48,9 +48,9 @@ rooms = {}
 
 camera = natrix.tools.Camera()
 
-group = natrix.predmet.GroupCamera()
+#group = natrix.predmet.GroupCamera()
 group_sprite = natrix.predmet.GroupCameraSprite()
-group_gui = natrix.predmet.Group()
+#group_gui = natrix.predmet.Group()
 
 
 rooms['room_0'] = natrix.tools.Room()
@@ -81,9 +81,9 @@ def draw():
     """
     screen.fill(yellow)
     camera.update()
-    group.draw(screen)
+#    group.draw(screen)
     group_sprite.draw()
-    group_gui.draw(screen)
+#    group_gui.draw(screen)
 
 
 def load_image(path='data/images/cat.png'):

@@ -217,9 +217,10 @@ class GroupCameraSprite(Group):
 
     def draw(self):
         """Docstring
-
+reversed
         """
-        for i in self.predmets:
+#       Stvari koje su "najviše" na ekranu crtaju se zadnje.
+        for i in reversed(self.predmets):
             x, y = i.rect.topleft
             x -= natrix.camera.rect.left
             y -= natrix.camera.rect.top
