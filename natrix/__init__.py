@@ -52,11 +52,13 @@ group = natrix.predmet.GroupCamera()
 group_sprite = natrix.predmet.GroupCameraSprite()
 group_gui = natrix.predmet.Group()
 
-room_0 = natrix.tools.Room()
-rooms['room_0'] = room_0
 
-room_1 = natrix.tools.Room()
-rooms['room_0'] = room_1
+rooms['room_0'] = natrix.tools.Room()
+room = rooms['room_0']
+
+
+#room_1 = natrix.tools.Room()
+#rooms['room_0'] = room_1
 
 
 def step():
@@ -123,3 +125,9 @@ class Sprite:
         screen.blit(images[self.image_name], topleft,
                     self.rect.move(x, y))
         pass
+
+def goto_room(room_name='room_0'):
+    room = rooms[room_name]
+    room.stop()
+    room.start()
+    pass

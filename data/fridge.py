@@ -53,10 +53,9 @@ class Igra(natrix.predmet.PredmetSprite):
 
 
 class Slovo(natrix.predmet.PredmetSprite):
-    def __init__(self, i=0, topleft=(200, 200), parent = None):
+    def __init__(self, i=0, topleft=(200, 200), parent=None):
         natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
         self.parent = parent
-        self.timer = 0
         self.image_index = i
 
     def lmb_down(self):
@@ -66,5 +65,46 @@ class Slovo(natrix.predmet.PredmetSprite):
         else:
             print('Krivo')
 
-natrix.room_0.clsarg.append((Igra, {'topleft': (350, 30)}), )
-natrix.room_1.clsarg.append((Igra, {'topleft': (30, 30)}), )
+
+class Goi(natrix.predmet.PredmetSprite):
+    def __init__(self, topleft=(200, 200), room_name='room_0', image_index=0):
+        natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
+
+        self.room_name = room_name
+        self.image_index = image_index
+        natrix.group_sprite.add(self)
+
+    def lmb_down(self):
+        natrix.goto_room(self.room_name)
+
+
+natrix.rooms['room_1'] = natrix.tools.Room()
+natrix.rooms['room_2'] = natrix.tools.Room()
+natrix.rooms['room_3'] = natrix.tools.Room()
+
+natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 50),
+                                            'room_name': 'room_1',
+                                            'image_index': 1}))
+
+natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 200),
+                                            'room_name': 'room_2',
+                                            'image_index': 2}))
+
+natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 350),
+                                            'room_name': 'room_3',
+                                            'image_index': 3}))
+
+natrix.rooms['room_1'].clsarg.append((Igra, {'topleft': (350, 30)}))
+natrix.rooms['room_1'].clsarg.append((Goi, {'topleft': (0, 0),
+                                            'room_name': 'room_0',
+                                            'image_index': 0}))
+
+natrix.rooms['room_2'].clsarg.append((Igra, {'topleft': (30, 30)}))
+natrix.rooms['room_2'].clsarg.append((Goi, {'topleft': (0, 0),
+                                            'room_name': 'room_0',
+                                            'image_index': 0}))
+
+natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (600, 30)}))
+natrix.rooms['room_3'].clsarg.append((Goi, {'topleft': (0, 0),
+                                            'room_name': 'room_0',
+                                            'image_index': 0}))

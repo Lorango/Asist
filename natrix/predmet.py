@@ -161,19 +161,25 @@ class Group:
         if self not in predmet.groups:
             predmet.groups.append(self)
 
-    def remove(self):
+    def remove(self, predmet):
         """Docstring
 
         """
-        # WIP
-        pass
+        if predmet in self.predmets:
+            self.predmets.remove(predmet)
+
+        if self in predmet.groups:
+            predmet.groups.remove(self)
 
     def empty(self):
         """Docstring
 
         """
+        for predmet in self.predmets:
+            predmet.groups.remove(self)
+
         self.predmets = []
-        pass
+
 
     def draw(self, surface):
         """Docstring

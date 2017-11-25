@@ -92,9 +92,12 @@ class Room():
         pass
 
     def start(self):
+#        for klass, args in self.clsarg:
         for klass, args in self.clsarg:
             natrix.group_sprite.add(klass(**args))
-        pass
+
+    def stop(self):
+        natrix.group_sprite.empty()
 
 
 class Camera():
