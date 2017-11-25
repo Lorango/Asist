@@ -8,9 +8,9 @@ import random
 import pygame
 import natrix
 
-natrix.load_image('data/images/novaslova.png')
+natrix.load_image('grafics/novaslova.png')
 
-sprite_1 = natrix.Sprite('test3', 'data/images/novaslova.png',
+sprite_1 = natrix.Sprite('test3', 'grafics/novaslova.png',
                          (0, 0, 100, 100), 6)
 
 

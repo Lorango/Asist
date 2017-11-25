@@ -8,7 +8,7 @@ Created on Tue Aug 29 14:45:47 2017
 import sys
 import pygame
 import natrix
-import data.data.fridge as fridge
+import data.fridge as fridge
 
 #  Main loop.
 while True:
