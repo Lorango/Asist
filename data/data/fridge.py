@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 29 14:45:47 2017
-
+Samo test da vidin kako funkcionira gutgab i source tree-
 @author: Lorango
 """
 import random
