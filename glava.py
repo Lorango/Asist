@@ -10,6 +10,8 @@ import pygame
 import natrix
 import data.fridge as fridge
 
+natrix.room_0.start()
+
 #  Main loop.
 while True:
     natrix.clock.tick(30)

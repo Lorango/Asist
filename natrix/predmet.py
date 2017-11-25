@@ -89,6 +89,7 @@ class PredmetSprite:
                kod ki mjenja image_indeks se more premestiti u specijalnu
                _step() metodu koju poziva step() metoda.
         """
+        #
         if self.auto_animated:
             if self.counter == self.sprite.speed - 1:
                 self.image_index = (self.image_index+1) % self.sprite.subimages

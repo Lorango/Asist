@@ -44,6 +44,7 @@ clock = pygame.time.Clock()
 
 images = {}
 sprites = {}
+rooms = {}
 
 camera = natrix.tools.Camera()
 
@@ -51,19 +52,25 @@ group = natrix.predmet.GroupCamera()
 group_sprite = natrix.predmet.GroupCameraSprite()
 group_gui = natrix.predmet.Group()
 
+room_0 = natrix.tools.Room()
+rooms['room_0'] = room_0
+
+room_1 = natrix.tools.Room()
+rooms['room_0'] = room_1
+
 
 def step():
     """Docstring
 
     """
-    for predmet in group:
-        predmet.step()
+#    for predmet in group:
+#        predmet.step()
 
     for predmet in group_sprite:
         predmet._step()
 
-    for predmet in group_gui:
-        predmet.step()
+#    for predmet in group_gui:
+#        predmet.step()
 
 
 def draw():
@@ -84,7 +91,7 @@ def load_image(path='data/images/cat.png'):
     if path not in images.keys():
         surface = pygame.image.load(path).convert_alpha()
         images[path] = surface
-        return images[path]
+        return surface
 
 
 class Sprite:

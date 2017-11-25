@@ -22,7 +22,7 @@ class Igra(natrix.predmet.PredmetSprite):
         self.slova = []  # objekti koji se stišće
         #  generiranje i pozicioniranje slova na ekran
         for i in range(5):
-            self.slova.append(Slovo(0, (100 + 130*(i % 5), 200)))
+            self.slova.append(Slovo(0, (100 + 130*(i % 5), 200), self))
 
         for i in self.slova:
             natrix.group_sprite.add(i)
@@ -53,17 +53,18 @@ class Igra(natrix.predmet.PredmetSprite):
 
 
 class Slovo(natrix.predmet.PredmetSprite):
-    def __init__(self, i=0, topleft=(200, 200)):
+    def __init__(self, i=0, topleft=(200, 200), parent = None):
         natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
+        self.parent = parent
         self.timer = 0
         self.image_index = i
 
     def lmb_down(self):
-        if self.image_index == igra.image_index:
+        if self.image_index == self.parent.image_index:
             print('Točno')
-            igra.gen()
+            self.parent.gen()
         else:
             print('Krivo')
 
-igra = Igra((350, 30))
-natrix.group_sprite.add(igra)
+natrix.room_0.clsarg.append((Igra, {'topleft': (350, 30)}), )
+natrix.room_1.clsarg.append((Igra, {'topleft': (30, 30)}), )

@@ -6,6 +6,7 @@ Created on Tue Aug 29 15:01:37 2017
 """
 
 import pygame
+import natrix.predmet
 
 #import tmx
 
@@ -52,7 +53,8 @@ def tilemap_create(path='maps/otok_2.tmx'):
     return tilemap, obj
 
 
-class Room():
+class Room_Legacy():
+    # Legacy
     def __init__(self, path='maps/otok_2.tmx'):
         self.path = path
         self.persistent = False
@@ -65,6 +67,34 @@ class Room():
 
     def load(self):
         self.mapa, self.objekti = tilemap_create(self.path)
+
+
+class Room():
+    n = 0
+
+    def __init__(self):
+        self.n = Room.n
+        Room.n += 1
+
+        self.clsarg = []
+
+        self._create()
+
+#        self.persistent = False
+#        self.group = None
+
+#        name = self.path.split('/')[-1].split('.')[0]
+#        rooms[n] = self
+#        print(self.path)
+
+    def _create(self):
+#        self.group_sprite = natrix.predmet.GroupCameraSprite()
+        pass
+
+    def start(self):
+        for klass, args in self.clsarg:
+            natrix.group_sprite.add(klass(**args))
+        pass
 
 
 class Camera():
