@@ -36,7 +36,7 @@ class Igra(natrix.predmet.PredmetSprite):
         """Popunjavanje i odabir slova ke će se pojavit na ekran.
 
         """
-        self.ras = [0, 99]  # raspon slova
+        self.ras = [0, 9]  # raspon slova
         self.image_index = random.randint(*self.ras)
         self.indeksi = [self.image_index]  # sliži za odabir slova
         for i in range(4):
