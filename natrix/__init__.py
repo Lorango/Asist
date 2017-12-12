@@ -42,7 +42,7 @@ pink = pygame.Color(255, 0, 110)
 # rezolucije "eksperiment!"
 rez_def = (800, 480) # izvorna rezolucija pri kojoj je igra razvijena
 rez = (800, 480) # rezolucija prikaza
-rez = (800, 480) # rezolucija prikaza
+rez = (1920, 1080) # rezolucija prikaza
 scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1]) #faktor skaliranja
 
 screen = pygame.display.set_mode(rez)
@@ -74,7 +74,7 @@ def scale(topleft):
     """
     _topleft = []
     for x, s in zip(topleft, scale_f):
-        _topleft.append(x*s)
+        _topleft.append(round(x*s))
 
     return _topleft
 
@@ -110,6 +110,8 @@ def load_image(path='data/images/cat.png'):
     """
     if path not in images.keys():
         surface = pygame.image.load(path).convert_alpha()
+        surface = pygame.transform.scale(surface, natrix.scale(surface.get_size())) # skaliranje zo rastezanjen.
+#        surface = pygame.transform.scale(surface, (round(surface.get_width()*min(scale_f)), (round(surface.get_height()*min(scale_f))))) # nespretno napisano napravit funkciju za skaliranje koja će moć to lipše odradit.
         images[path] = surface
         return surface
 
@@ -125,6 +127,12 @@ class Sprite:
         self.name = sprite_name
         self.image_name = image_name
         self.rect = pygame.Rect(rect)
+
+        print(self.rect, type(self.rect.size))
+        self.rect.inflate_ip(self.rect.w*(scale_f[0] - 1), self.rect.h*(scale_f[1] - 1))
+        self.rect.topleft = (0, 0)
+        print(self.rect, type(self.rect.size))
+
         self.subimages = n
         self.speed = 30  # Broj potrebnih frame-ova za promjenu sličice.
 
@@ -138,6 +146,9 @@ class Sprite:
 
         dim = images[self.image_name].get_size()
         jkl = (dim[0] // self.rect.width, dim[1] // self.rect.height)
+#        print(jkl)
+#        jkl = (round(min(natrix.scale_f)*(dim[0] // self.rect.width)), round(min(natrix.scale_f)*(dim[1] // self.rect.height)))
+#        print(jkl)
         x = self.rect.width*(i % jkl[0])
         y = self.rect.height*(i // jkl[0])
         screen.blit(images[self.image_name], topleft,
