@@ -16,7 +16,8 @@ class Primitive():
     def __init__(self, rect=(0, 0, 80, 80), image_name=None):
         self.rect = pygame.Rect(rect)
         if image_name is None:
-            self.image = pygame.Surface(self.rect.size)
+            self.image = pygame.Surface(natrix.scale(self.rect.size))
+#            self.image = pygame.Surface(self.rect.size)
             self.image.fill(natrix.gray)
         else:
             self.image = natrix.images[image_name]
@@ -74,7 +75,7 @@ class PredmetSprite:
 
         self.groups = []
 
-        self.rect.topleft = topleft
+        self.rect.topleft = natrix.scale(topleft)
 
         self.image_index = 0
         self.counter = 0

@@ -8,9 +8,9 @@ import random
 import pygame
 import natrix
 
-natrix.load_image('grafics/novaslova.png')
+natrix.load_image('grafics/slova02m.png')
 
-sprite_1 = natrix.Sprite('test3', 'grafics/novaslova.png',
+sprite_1 = natrix.Sprite('test3', 'grafics/slova02m.png',
                          (0, 0, 100, 100), 6)
 
 
@@ -36,7 +36,7 @@ class Igra(natrix.predmet.PredmetSprite):
         """Popunjavanje i odabir slova ke će se pojavit na ekran.
 
         """
-        self.ras = [0, 9]  # raspon slova
+        self.ras = [60, 89]  # raspon slova
         self.image_index = random.randint(*self.ras)
         self.indeksi = [self.image_index]  # sliži za odabir slova
         for i in range(4):
@@ -63,7 +63,7 @@ class Slovo(natrix.predmet.PredmetSprite):
             print('Točno')
             self.parent.gen()
         else:
-            print('Krivo')
+            print('Krivo', self.rect)
 
 
 class Goi(natrix.predmet.PredmetSprite):

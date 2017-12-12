@@ -22,7 +22,7 @@ print('Test za vidit koliko puti će se učitat natrix modul.')
 
 #  Boje
 black = pygame.Color(0, 0, 0)
-gray = pygame.Color(110, 110, 110)
+gray = pygame.Color(200, 200, 200)
 white = pygame.Color(255, 255, 255)
 
 red = pygame.Color(255, 0, 0)
@@ -39,7 +39,13 @@ magenta = pygame.Color(255, 0, 255)
 pink = pygame.Color(255, 0, 110)
 
 #  Kontrolne varijable
-screen = pygame.display.set_mode((800, 480))
+# rezolucije "eksperiment!"
+rez_def = (800, 480) # izvorna rezolucija pri kojoj je igra razvijena
+rez = (800, 480) # rezolucija prikaza
+rez = (800, 480) # rezolucija prikaza
+scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1]) #faktor skaliranja
+
+screen = pygame.display.set_mode(rez)
 clock = pygame.time.Clock()
 
 images = {}
@@ -54,11 +60,23 @@ group_sprite = natrix.predmet.GroupCameraSprite()
 
 
 rooms['room_0'] = natrix.tools.Room()
-room = rooms['room_0']
+#room = rooms['room_0']
 
 
 #room_1 = natrix.tools.Room()
 #rooms['room_0'] = room_1
+
+def scale(topleft):
+    """Skaliranje koordinata.
+    Prima polje koordinata (x, y), duljine 2. [topleft]
+    Vraća skalirane koordinate (x', y'). [_topleft]
+
+    """
+    _topleft = []
+    for x, s in zip(topleft, scale_f):
+        _topleft.append(x*s)
+
+    return _topleft
 
 
 def step():
@@ -79,7 +97,7 @@ def draw():
     """Docstring
 
     """
-    screen.fill(yellow)
+    screen.fill(white)
     camera.update()
 #    group.draw(screen)
     group_sprite.draw()
