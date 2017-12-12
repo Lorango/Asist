@@ -40,7 +40,7 @@ pink = pygame.Color(255, 0, 110)
 
 #  Kontrolne varijable
 # rezolucije "eksperiment!"
-rez_def = (800, 480) # izvorna rezolucija pri kojoj je igra razvijena
+rez_def = (1920, 1080) # izvorna rezolucija pri kojoj je igra razvijena
 rez = (800, 480) # rezolucija prikaza
 rez = (1920, 1080) # rezolucija prikaza
 scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1]) #faktor skaliranja
@@ -110,7 +110,8 @@ def load_image(path='data/images/cat.png'):
     """
     if path not in images.keys():
         surface = pygame.image.load(path).convert_alpha()
-        surface = pygame.transform.scale(surface, natrix.scale(surface.get_size())) # skaliranje zo rastezanjen.
+#        surface = pygame.transform.scale(surface, natrix.scale(surface.get_size())) # skaliranje zo rastezanjen.
+        surface = pygame.transform.smoothscale(surface, natrix.scale(surface.get_size())) # lipo skaliranje zo rastezanjen.
 #        surface = pygame.transform.scale(surface, (round(surface.get_width()*min(scale_f)), (round(surface.get_height()*min(scale_f))))) # nespretno napisano napravit funkciju za skaliranje koja će moć to lipše odradit.
         images[path] = surface
         return surface
@@ -146,6 +147,7 @@ class Sprite:
 
         dim = images[self.image_name].get_size()
         jkl = (dim[0] // self.rect.width, dim[1] // self.rect.height)
+#        jkl = natrix.scale(jkl)
 #        print(jkl)
 #        jkl = (round(min(natrix.scale_f)*(dim[0] // self.rect.width)), round(min(natrix.scale_f)*(dim[1] // self.rect.height)))
 #        print(jkl)

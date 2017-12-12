@@ -8,10 +8,10 @@ import random
 import pygame
 import natrix
 
-natrix.load_image('grafics/slova02m.png')
+natrix.load_image('grafics/slova02.png')
 
-sprite_1 = natrix.Sprite('test3', 'grafics/slova02m.png',
-                         (0, 0, 100, 100), 6)
+sprite_1 = natrix.Sprite('test3', 'grafics/slova02.png',
+                         (0, 0, 300, 300), 6)
 
 
 class Igra(natrix.predmet.PredmetSprite):
@@ -22,7 +22,7 @@ class Igra(natrix.predmet.PredmetSprite):
         self.slova = []  # objekti koji se stišće
         #  generiranje i pozicioniranje slova na ekran
         for i in range(5):
-            self.slova.append(Slovo(0, (100 + 130*(i % 5), 200), self))
+            self.slova.append(Slovo(0, (100 + 330*(i % 5), 350), self))
 
         for i in self.slova:
             natrix.group_sprite.add(i)
@@ -86,15 +86,15 @@ natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 50),
                                             'room_name': 'room_1',
                                             'image_index': 1}))
 
-natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 200),
+natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 350),
                                             'room_name': 'room_2',
                                             'image_index': 2}))
 
-natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 350),
+natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 650),
                                             'room_name': 'room_3',
                                             'image_index': 3}))
 
-natrix.rooms['room_1'].clsarg.append((Igra, {'topleft': (350, 30)}))
+natrix.rooms['room_1'].clsarg.append((Igra, {'topleft': (400, 0)}))
 natrix.rooms['room_1'].clsarg.append((Goi, {'topleft': (0, 0),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
