@@ -43,8 +43,8 @@ pink = pygame.Color(255, 0, 110)
 # rezolucije "eksperiment!"
 rez_def = (1920, 1080) # izvorna rezolucija pri kojoj je igra razvijena
 #rez = (800, 480) # rezolucija prikaza
-rez = (800, 600) # rezolucija prikaza
-#rez = (1020, 1020) # rezolucija prikaza
+#rez = (1000, 600) # rezolucija prikaza
+rez = (1020, 1020) # rezolucija prikaza
 scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1]) #faktor skaliranja
 
 screen = pygame.display.set_mode(rez)
@@ -76,7 +76,7 @@ def scale(topleft):
     """
     _topleft = []
     for x, s in zip(topleft, scale_f):
-        _topleft.append(math.floor(x*s))
+        _topleft.append(round(x*s))
 
 #    print(_topleft)
 
@@ -108,17 +108,43 @@ def draw():
 #    group_gui.draw(screen)
 
 
-def load_image(path='data/images/cat.png'):
+def load_image(path='data/images/cat.png', size=[10, 10]):
     """Docstring
 
     """
+#    screen.fill(white)
     if path not in images.keys():
         surface = pygame.image.load(path).convert_alpha()
-#        surface = pygame.transform.scale(surface, natrix.scale(surface.get_size())) # skaliranje zo rastezanjen.
-        surface = pygame.transform.smoothscale(surface, natrix.scale(surface.get_size())) # lipo skaliranje zo rastezanjen.
-#        surface = pygame.transform.scale(surface, (math.floor(surface.get_width()*min(scale_f)), (math.floor(surface.get_height()*min(scale_f))))) # nespretno napisano napravit funkciju za skaliranje koja će moć to lipše odradit.
-        images[path] = surface
-        return surface
+
+        image_size = surface.get_size()
+        a = round(image_size[0]/size[0])
+        b = round(image_size[1]/size[1])
+
+        c, d = natrix.scale((a, b))
+
+        print(a, b)
+        print(c, d)
+
+        surface_ = pygame.Surface((c * size[0], d * size[1])).convert_alpha()
+        surface_.fill((0, 255, 255, 0))
+        print(surface_)
+
+        kalup = pygame.Surface((a, b)).convert_alpha()
+        kalup.fill((0, 255, 255, 0))
+
+        for j in range(size[0]):  # broj redova
+            y = b*j
+            for i in range(size[1]):  # broj stupaca
+                x = a*i
+                temp = kalup.copy()
+                temp.blit(surface, (0, 0), (x, y, a, b))
+                temp = pygame.transform.smoothscale(temp, natrix.scale((a, b)))
+                screen.blit(temp, (x, y), (0, 0, c, d))
+                surface_.blit(temp, (c*i, d*j), (0, 0, c, d))
+                pass
+
+        images[path] = surface_
+        return surface_
 
 
 class Sprite:
@@ -153,20 +179,8 @@ class Sprite:
                 w = x - x_pred
                 x_pred = x
 
-                print('n:', j*10 + i, 'x:', x, 'w:', w, 'ab:', x - round(x))
-
-                x_ = x
-                w_ = w
-
-                delta = x - round(x)
-                if abs(delta) <= 0.5:
-                    w_ += 1
-
-                if delta < 0:
-                    x_ -= 1
-
-                self.subimages.append(pygame.Rect(round(x_), round(y),
-                                                  round(w_), round(h)))
+                self.subimages.append(pygame.Rect(round(x), round(y),
+                                                  round(w), round(h)))
 
 
     def draw(self, topleft, i):
