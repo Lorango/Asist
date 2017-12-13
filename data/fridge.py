@@ -11,7 +11,7 @@ import natrix
 natrix.load_image('grafics/slova02.png')
 
 sprite_1 = natrix.Sprite('test3', 'grafics/slova02.png',
-                         (0, 0, 300, 300), 6)
+                         (10, 10))
 
 
 class Igra(natrix.predmet.PredmetSprite):
@@ -77,6 +77,10 @@ class Goi(natrix.predmet.PredmetSprite):
     def lmb_down(self):
         natrix.goto_room(self.room_name)
 
+for i in range(10):
+    natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (420 + 310*(i % 4), 50 + 310*(i // 4)),
+                                            'room_name': 'room_0',
+                                            'image_index': i}))
 
 natrix.rooms['room_1'] = natrix.tools.Room()
 natrix.rooms['room_2'] = natrix.tools.Room()

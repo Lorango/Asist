@@ -9,6 +9,7 @@ game engine koji objedinjuje igru, pygame i Tiled editor (.tmx i .tsx)
 Modul sadrši funkcionalnosti za stvaranje soba, kamera i slično.
 """
 
+import math
 import pygame
 import natrix.tools
 import natrix.predmet
@@ -41,8 +42,8 @@ pink = pygame.Color(255, 0, 110)
 #  Kontrolne varijable
 # rezolucije "eksperiment!"
 rez_def = (1920, 1080) # izvorna rezolucija pri kojoj je igra razvijena
-rez = (800, 480) # rezolucija prikaza
-rez = (1920, 1080) # rezolucija prikaza
+#rez = (800, 480) # rezolucija prikaza
+rez = (900, 540) # rezolucija prikaza
 scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1]) #faktor skaliranja
 
 screen = pygame.display.set_mode(rez)
@@ -74,7 +75,9 @@ def scale(topleft):
     """
     _topleft = []
     for x, s in zip(topleft, scale_f):
-        _topleft.append(round(x*s))
+        _topleft.append(math.floor(x*s))
+
+#    print(_topleft)
 
     return _topleft
 
@@ -112,14 +115,54 @@ def load_image(path='data/images/cat.png'):
         surface = pygame.image.load(path).convert_alpha()
 #        surface = pygame.transform.scale(surface, natrix.scale(surface.get_size())) # skaliranje zo rastezanjen.
         surface = pygame.transform.smoothscale(surface, natrix.scale(surface.get_size())) # lipo skaliranje zo rastezanjen.
-#        surface = pygame.transform.scale(surface, (round(surface.get_width()*min(scale_f)), (round(surface.get_height()*min(scale_f))))) # nespretno napisano napravit funkciju za skaliranje koja će moć to lipše odradit.
+#        surface = pygame.transform.scale(surface, (math.floor(surface.get_width()*min(scale_f)), (math.floor(surface.get_height()*min(scale_f))))) # nespretno napisano napravit funkciju za skaliranje koja će moć to lipše odradit.
         images[path] = surface
         return surface
-
 
 class Sprite:
     """Docstring
     Sadrži podatke kako blitat sprite sa slike na ekran.
+
+    """
+    def __init__(self, sprite_name, image_name='data/images/brendan.png',
+                 size=[10, 10]):
+
+        self.name = sprite_name
+        self.image_name = image_name
+        self.size = size
+        self.subimages = []
+        self.speed = 30  # Broj potrebnih frame-ova za promjenu sličice.
+
+        self.calc()
+
+    def calc(self):
+        image_size = images[self.image_name].get_size()
+        a = image_size[0]/self.size[0]
+        b = image_size[1]/self.size[1]
+        for j in range(self.size[0]):  # broj redov
+            for i in range(self.size[1]):  # broj stupaca
+                dim_1 = round(a*i)
+                dim_2 = round(b*j)
+
+                self.subimages.append(pygame.Rect(dim_1, dim_2, a, b))
+
+        pass
+
+
+    def draw(self, topleft, i):
+        """Docstring
+        Blita direktno sa slike na ekran.
+
+        """
+        screen.blit(images[self.image_name], topleft, self.subimages[i])
+        pass
+
+
+class Sprite2:
+    """Docstring
+    Sadrži podatke kako blitat sprite sa slike na ekran.
+
+    Bit će pobrisano u budućnosti ako bude novi kod istravno delal.
 
     """
     def __init__(self, sprite_name, image_name='data/images/brendan.png',
@@ -130,7 +173,14 @@ class Sprite:
         self.rect = pygame.Rect(rect)
 
         print(self.rect, type(self.rect.size))
-        self.rect.inflate_ip(self.rect.w*(scale_f[0] - 1), self.rect.h*(scale_f[1] - 1))
+# računanje pomaka - u širini/visini okvira
+        dx = self.rect.w*(scale_f[0]-1) - math.floor(self.rect.w*(scale_f[0]-1))
+
+
+# računanje pomaka, kraj
+
+        self.rect.inflate_ip(self.rect.w*(scale_f[0]-1), self.rect.h*(scale_f[1]-1))
+#        self.rect.inflate_ip(math.floor(self.rect.w*(scale_f[0]-1)), math.floor(self.rect.h*(scale_f[1]-1)))
         self.rect.topleft = (0, 0)
         print(self.rect, type(self.rect.size))
 
@@ -146,15 +196,19 @@ class Sprite:
 #                    self.rect.move(self.rect.width*i, 0))
 
         dim = images[self.image_name].get_size()
+#        print(dim)
         jkl = (dim[0] // self.rect.width, dim[1] // self.rect.height)
+#        print(jkl, 'ori')
 #        jkl = natrix.scale(jkl)
+#        print(jkl, 'scale')
+#        jkl = (math.floor(min(natrix.scale_f)*(dim[0] // self.rect.width)), math.floor(min(natrix.scale_f)*(dim[1] // self.rect.height)))
 #        print(jkl)
-#        jkl = (round(min(natrix.scale_f)*(dim[0] // self.rect.width)), round(min(natrix.scale_f)*(dim[1] // self.rect.height)))
-#        print(jkl)
-        x = self.rect.width*(i % jkl[0])
+        x = self.rect.width*((i % jkl[0])) - i % jkl[0]
         y = self.rect.height*(i // jkl[0])
+#        print(self.rect)
         screen.blit(images[self.image_name], topleft,
                     self.rect.move(x, y))
+#        print(self.rect)
         pass
 
 def goto_room(room_name='room_0'):

@@ -70,7 +70,7 @@ class PredmetSprite:
 
     """
     def __init__(self, sprite, topleft=(100, 100)):
-        self.rect = sprite.rect.copy()
+        self.rect = sprite.subimages[0].copy()
         self.sprite = sprite
 
         self.groups = []
