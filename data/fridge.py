@@ -80,7 +80,7 @@ class Goi(natrix.predmet.PredmetSprite):
 for i in range(10):
     natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (420 + 310*(i % 4), 50 + 310*(i // 4)),
                                             'room_name': 'room_0',
-                                            'image_index': i}))
+                                            'image_index': 10*i + i}))
 
 natrix.rooms['room_1'] = natrix.tools.Room()
 natrix.rooms['room_2'] = natrix.tools.Room()

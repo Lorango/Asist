@@ -43,7 +43,8 @@ pink = pygame.Color(255, 0, 110)
 # rezolucije "eksperiment!"
 rez_def = (1920, 1080) # izvorna rezolucija pri kojoj je igra razvijena
 #rez = (800, 480) # rezolucija prikaza
-rez = (900, 540) # rezolucija prikaza
+rez = (800, 600) # rezolucija prikaza
+#rez = (1020, 1020) # rezolucija prikaza
 scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1]) #faktor skaliranja
 
 screen = pygame.display.set_mode(rez)
@@ -119,6 +120,7 @@ def load_image(path='data/images/cat.png'):
         images[path] = surface
         return surface
 
+
 class Sprite:
     """Docstring
     Sadrži podatke kako blitat sprite sa slike na ekran.
@@ -139,14 +141,32 @@ class Sprite:
         image_size = images[self.image_name].get_size()
         a = image_size[0]/self.size[0]
         b = image_size[1]/self.size[1]
-        for j in range(self.size[0]):  # broj redov
+
+        y_pred = -b
+        for j in range(self.size[0]):  # broj redova
+            x_pred = -a
+            y = b*j
+            h = y - y_pred
+            y_pred = y
             for i in range(self.size[1]):  # broj stupaca
-                dim_1 = round(a*i)
-                dim_2 = round(b*j)
+                x = a*i
+                w = x - x_pred
+                x_pred = x
 
-                self.subimages.append(pygame.Rect(dim_1, dim_2, a, b))
+                print('n:', j*10 + i, 'x:', x, 'w:', w, 'ab:', x - round(x))
 
-        pass
+                x_ = x
+                w_ = w
+
+                delta = x - round(x)
+                if abs(delta) <= 0.5:
+                    w_ += 1
+
+                if delta < 0:
+                    x_ -= 1
+
+                self.subimages.append(pygame.Rect(round(x_), round(y),
+                                                  round(w_), round(h)))
 
 
     def draw(self, topleft, i):
@@ -157,59 +177,6 @@ class Sprite:
         screen.blit(images[self.image_name], topleft, self.subimages[i])
         pass
 
-
-class Sprite2:
-    """Docstring
-    Sadrži podatke kako blitat sprite sa slike na ekran.
-
-    Bit će pobrisano u budućnosti ako bude novi kod istravno delal.
-
-    """
-    def __init__(self, sprite_name, image_name='data/images/brendan.png',
-                 rect=(0, 0, 14, 21), n=3):
-
-        self.name = sprite_name
-        self.image_name = image_name
-        self.rect = pygame.Rect(rect)
-
-        print(self.rect, type(self.rect.size))
-# računanje pomaka - u širini/visini okvira
-        dx = self.rect.w*(scale_f[0]-1) - math.floor(self.rect.w*(scale_f[0]-1))
-
-
-# računanje pomaka, kraj
-
-        self.rect.inflate_ip(self.rect.w*(scale_f[0]-1), self.rect.h*(scale_f[1]-1))
-#        self.rect.inflate_ip(math.floor(self.rect.w*(scale_f[0]-1)), math.floor(self.rect.h*(scale_f[1]-1)))
-        self.rect.topleft = (0, 0)
-        print(self.rect, type(self.rect.size))
-
-        self.subimages = n
-        self.speed = 30  # Broj potrebnih frame-ova za promjenu sličice.
-
-    def draw(self, topleft, i):
-        """Docstring
-        Blita direktno sa slike na ekran.
-
-        """
-#        screen.blit(images[self.image_name], topleft,
-#                    self.rect.move(self.rect.width*i, 0))
-
-        dim = images[self.image_name].get_size()
-#        print(dim)
-        jkl = (dim[0] // self.rect.width, dim[1] // self.rect.height)
-#        print(jkl, 'ori')
-#        jkl = natrix.scale(jkl)
-#        print(jkl, 'scale')
-#        jkl = (math.floor(min(natrix.scale_f)*(dim[0] // self.rect.width)), math.floor(min(natrix.scale_f)*(dim[1] // self.rect.height)))
-#        print(jkl)
-        x = self.rect.width*((i % jkl[0])) - i % jkl[0]
-        y = self.rect.height*(i // jkl[0])
-#        print(self.rect)
-        screen.blit(images[self.image_name], topleft,
-                    self.rect.move(x, y))
-#        print(self.rect)
-        pass
 
 def goto_room(room_name='room_0'):
     room = rooms[room_name]
