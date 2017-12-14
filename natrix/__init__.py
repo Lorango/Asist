@@ -112,50 +112,54 @@ class Sprite:
         self.size = size
         self.subimages = []
         self.speed = 30  # Broj potrebnih frame-ova za promjenu sličice.
-        if image_path not in images.keys():
-            self.load_image(image_path, size)
+        self.load_image(image_path, size)
 
     def draw(self, topleft, i):
         """Docstring
         Blita direktno sa slike na ekran.
 
         """
-        screen.blit(images[self.image_path], topleft, self.subimages[i])
+        screen.blit(images[self.image_path][0], topleft, self.subimages[i])
         pass
 
     def load_image(self, image_path, size):
         """Učitava sliku, skalira je i određuje skalirane odsječke
         za sprite-ove.
 
+        Rabi predelat na način da omogućava kreiranje drugoga sprite-a sa iste
+        slike.
         """
-        surface = pygame.image.load(image_path).convert_alpha()
+        if image_path not in images.keys():
+            surface = pygame.image.load(image_path).convert_alpha()
+            image_size = surface.get_size()
+            w = round(image_size[0]/size[0])  # širina podsličice
+            h = round(image_size[1]/size[1])
 
-        image_size = surface.get_size()
-        w = round(image_size[0]/size[0])
-        h = round(image_size[1]/size[1])
+            w_, h_ = natrix.scale((w, h))  # skalirana širina i visina podsličice
+            surface_ = pygame.Surface((w_ * size[0], h_ * size[1])).convert_alpha()
+            surface_.fill((0, 255, 255, 0))
+            kalup = pygame.Surface((w, h)).convert_alpha()
+            kalup.fill((0, 255, 255, 0))
+            for j in range(size[0]):  # broj redova
+                y = h*j
+                y_ = h_*j
+                for i in range(size[1]):  # broj stupaca
+                    x = w*i
+                    x_ = w_*i
+                    temp = kalup.copy()
+                    temp.blit(surface, (0, 0), (x, y, w, h))
+                    temp = pygame.transform.smoothscale(temp, (w_, h_))
+                    rect = surface_.blit(temp, (x_, y_), (0, 0, w_, h_))
+                    self.subimages.append(rect)
 
-        w_, h_ = natrix.scale((w, h))
+            meta_data = (size, (w_, h_))
+            images[image_path] = (surface_, meta_data)
+        else:
+            """Za implementirat u budućnosti. Vjerovatno će zahtjevat
+            rekonstrukciju algoritma učitavanja i skaliranja.
 
-        surface_ = pygame.Surface((w_ * size[0], h_ * size[1])).convert_alpha()
-        surface_.fill((0, 255, 255, 0))
-
-        kalup = pygame.Surface((w, h)).convert_alpha()
-        kalup.fill((0, 255, 255, 0))
-
-        for j in range(size[0]):  # broj redova
-            y = h*j
-            y_ = h_*j
-            for i in range(size[1]):  # broj stupaca
-                x = w*i
-                x_ = w_*i
-                temp = kalup.copy()
-                temp.blit(surface, (0, 0), (x, y, w, h))
-                temp = pygame.transform.smoothscale(temp, (w_, h_))
-                rect = surface_.blit(temp, (x_, y_), (0, 0, w_, h_))
-                self.subimages.append(rect)
-
-        images[image_path] = surface_
-        return surface_
+            """
+            pass
 
 
 def goto_room(room_name='room_0'):
