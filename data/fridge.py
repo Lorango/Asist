@@ -8,10 +8,8 @@ import random
 import pygame
 import natrix
 
-natrix.load_image('grafics/slova02.png')
 
-sprite_1 = natrix.Sprite('test3', 'grafics/slova02.png',
-                         (10, 10))
+sprite_1 = natrix.Sprite('test3', 'grafics/slova02.png', (10, 10))
 
 
 class Igra(natrix.predmet.PredmetSprite):
