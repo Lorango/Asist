@@ -9,6 +9,7 @@ game engine koji objedinjuje igru, pygame i Tiled editor (.tmx i .tsx)
 Modul sadrši funkcionalnosti za stvaranje soba, kamera i slično.
 """
 
+import xml.etree.ElementTree as ET
 import pygame
 import natrix.tools
 import natrix.predmet
@@ -59,6 +60,9 @@ group_sprite = natrix.predmet.GroupCameraSprite()
 #group_gui = natrix.predmet.Group()
 
 rooms['room_0'] = natrix.tools.Room()
+
+tree = ET.parse('options.txt')
+options = tree.getroot()
 
 
 def scale(topleft):
@@ -113,6 +117,8 @@ class Sprite:
         self.subimages = []
         self.speed = 30  # Broj potrebnih frame-ova za promjenu sličice.
         self.load_image(image_path, size)
+        
+        sprites[sprite_name] = self
 
     def draw(self, topleft, i):
         """Docstring

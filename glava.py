@@ -19,7 +19,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            sys.exit(0)
 
         if event.type == pygame.MOUSEBUTTONUP:
             if event.button == 1:

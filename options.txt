@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<options>
+    <natrix name="natrix">
+        <natrix>0</natrix>
+    </natrix>
+    <game name="game_one">
+        <brojke>0</brojke>
+        <vela_slova>1</vela_slova>
+        <mala_slova>0</mala_slova>
+        <strana_slova>1</strana_slova>
+    </game>
+    <game name="Singapore">
+        <rank>1</rank>
+        <year>2011</year>
+        <gdppc>59900</gdppc>
+        <neighbor name="Malaysia" direction="N"/>
+    </game>
+    <game name="Panama">
+        <rank>68</rank>
+        <year>2011</year>
+        <gdppc>13600</gdppc>
+        <neighbor name="Costa Rica" direction="W"/>
+        <neighbor name="Colombia" direction="E"/>
+    </game>
+</options>
