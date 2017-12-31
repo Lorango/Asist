@@ -34,7 +34,6 @@ class Igra(natrix.predmet.PredmetSprite):
         """Popunjavanje i odabir slova ke će se pojavit na ekran.
 
         """
-#        self.ras = [60, 89]  # raspon slova
         self.ras = []
         if int(options[0].text):
             self.ras.extend(list(range(10 + 1)))

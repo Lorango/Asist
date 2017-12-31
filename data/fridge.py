@@ -7,7 +7,8 @@ Samo test da vidin kako funkcionira gutgab i source tree-
 
 import natrix
 
-sprite_1 = natrix.Sprite('test_3', 'grafics/slova02.png', (10, 10))
+sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10))
+sprite_2 = natrix.Sprite('slike', 'grafics/slike1.png', (30, 3))
 
 class Goi(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200), room_name='room_0', image_index=0):
@@ -19,12 +20,6 @@ class Goi(natrix.predmet.PredmetSprite):
 
     def lmb_down(self):
         natrix.goto_room(self.room_name)
-
-#for i in range(10):
-#    natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (420 + 310*(i % 4),
-#                                                            50 + 310*(i // 4)),
-#                                                'room_name': 'room_0',
-#                                                'image_index': 10*i + i}))
 
 natrix.rooms['room_1'] = natrix.tools.Room()
 natrix.rooms['room_2'] = natrix.tools.Room()
@@ -52,7 +47,6 @@ natrix.rooms['room_2'].clsarg.append((Goi, {'topleft': (0, 0),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
-#natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (600, 30)}))
 natrix.rooms['room_3'].clsarg.append((Goi, {'topleft': (0, 0),
                                             'room_name': 'room_0',
                                             'image_index': 0}))

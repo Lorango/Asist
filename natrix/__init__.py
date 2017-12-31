@@ -110,6 +110,8 @@ class Sprite:
     """
     def __init__(self, sprite_name, image_path='data/images/brendan.png',
                  size=[10, 10]):
+        
+        # size = [broj redova, broj stupaca]
 
         self.name = sprite_name
         self.image_path = image_path
@@ -138,11 +140,11 @@ class Sprite:
         if image_path not in images.keys():
             surface = pygame.image.load(image_path).convert_alpha()
             image_size = surface.get_size()
-            w = round(image_size[0]/size[0])  # širina podsličice
-            h = round(image_size[1]/size[1])
+            w = round(image_size[1]/size[0])  # širina podsličice
+            h = round(image_size[0]/size[1])
 
             w_, h_ = natrix.scale((w, h))  # skalirana širina i visina podsličice
-            surface_ = pygame.Surface((w_ * size[0], h_ * size[1])).convert_alpha()
+            surface_ = pygame.Surface((w_ * size[1], h_ * size[0])).convert_alpha()
             surface_.fill((0, 255, 255, 0))
             kalup = pygame.Surface((w, h)).convert_alpha()
             kalup.fill((0, 255, 255, 0))
