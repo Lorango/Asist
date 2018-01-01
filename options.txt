@@ -8,7 +8,7 @@
         <vela_slova>1</vela_slova>
         <mala_slova>0</mala_slova>
         <strana_slova>0</strana_slova>
-        <broj_slova>5</broj_slova>
+        <broj_izbora>5</broj_izbora>
     </game>
     <game name="Singapore">
         <rank>1</rank>
@@ -21,5 +21,6 @@
         <b>1</b>
         <c>0</c>
         <d>1</d>
+        <broj_izbora>3</broj_izbora>
     </game>
 </options>
