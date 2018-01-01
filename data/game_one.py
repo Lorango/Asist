@@ -42,29 +42,21 @@ class Igra(natrix.predmet.PredmetSprite):
         """Popunjavanje i odabir slova ke će se pojavit na ekran.
 
         """
-        self.ras = []
+        self.ras = []  # sadrži sve indekse ke se more odabrat
+        eng = int(options[3].text)  # uključi engleske znakove
         if int(options[0].text):
             self.ras.extend(list(range(10 + 1)))
 
         if int(options[1].text):
-            self.ras.extend(list(range(20 + 1,
-                                       50 + 1 + 3*int(options[3].text))))
+            self.ras.extend(list(range(20, 50 + 4*eng)))
 
         if int(options[2].text):
-            self.ras.extend(list(range(60 + 1,
-                                       90 + 1 + 3*int(options[3].text))))
+            self.ras.extend(list(range(60, 90 + 4*eng)))
 
-        self.image_index = random.choice(self.ras)
-        self.indeksi = [self.image_index]  # sliži za odabir slova
-        for i in range(self.n_-1):
-            r = random.choice(self.ras)
-            while r in self.indeksi:
-                r = random.choice(self.ras)
+        self.indeksi = random.sample(self.ras, self.n_)  # odabir kandidata
+        self.image_index = random.choice(self.indeksi)  # odabir traženoga
 
-            self.indeksi.append(r)
-
-        random.shuffle(self.indeksi)
-
+        # svakom slovu postavi njegov index
         for i, slovo in enumerate(self.slova):
             slovo.image_index = self.indeksi[i]
 

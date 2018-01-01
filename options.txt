@@ -7,7 +7,7 @@
         <brojke>0</brojke>
         <vela_slova>1</vela_slova>
         <mala_slova>0</mala_slova>
-        <strana_slova>1</strana_slova>
+        <strana_slova>0</strana_slova>
         <broj_slova>5</broj_slova>
     </game>
     <game name="Singapore">
