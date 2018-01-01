@@ -39,12 +39,13 @@ purple = pygame.Color(110, 0, 255)
 magenta = pygame.Color(255, 0, 255)
 pink = pygame.Color(255, 0, 110)
 
+neutral_c = pygame.Color(19, 25, 38)  # neutralno črno siva boja
+
 #  Kontrolne varijable
-rez_def = (1920, 1080) # izvorna rezolucija pri kojoj je igra razvijena
-rez = (800, 480) # rezolucija prikaza
-#rez = (1000, 600) # rezolucija prikaza
-#rez = (1020, 1020) # rezolucija prikaza
-scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1]) #faktor skaliranja
+rez_def = (1600, 900)  # izvorna rezolucija pri kojoj je igra razvijena
+#rez = (1600, 900)
+rez = (800, 450)  # rezolucija prikaza
+scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1])  # faktor skaliranja
 
 screen = pygame.display.set_mode(rez)
 clock = pygame.time.Clock()
@@ -96,7 +97,7 @@ def draw():
     """Docstring
 
     """
-    screen.fill(white)
+    screen.fill(neutral_c)
     camera.update()
 #    group.draw(screen)
     group_sprite.draw()
@@ -110,7 +111,7 @@ class Sprite:
     """
     def __init__(self, sprite_name, image_path='data/images/brendan.png',
                  size=[10, 10]):
-        
+
         # size = [broj redova, broj stupaca]
 
         self.name = sprite_name
@@ -119,7 +120,7 @@ class Sprite:
         self.subimages = []
         self.speed = 30  # Broj potrebnih frame-ova za promjenu sličice.
         self.load_image(image_path, size)
-        
+
         sprites[sprite_name] = self
 
     def draw(self, topleft, i):
@@ -143,8 +144,11 @@ class Sprite:
             w = round(image_size[1]/size[0])  # širina podsličice
             h = round(image_size[0]/size[1])
 
-            w_, h_ = natrix.scale((w, h))  # skalirana širina i visina podsličice
-            surface_ = pygame.Surface((w_ * size[1], h_ * size[0])).convert_alpha()
+            # skalirana širina i visina podsličice
+            w_, h_ = natrix.scale((w, h))
+            surface_ = pygame.Surface((w_ * size[1],
+                                       h_ * size[0])).convert_alpha()
+
             surface_.fill((0, 255, 255, 0))
             kalup = pygame.Surface((w, h)).convert_alpha()
             kalup.fill((0, 255, 255, 0))

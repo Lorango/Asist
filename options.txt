@@ -8,6 +8,7 @@
         <vela_slova>1</vela_slova>
         <mala_slova>0</mala_slova>
         <strana_slova>1</strana_slova>
+        <broj_slova>5</broj_slova>
     </game>
     <game name="Singapore">
         <rank>1</rank>
@@ -16,9 +17,9 @@
         <neighbor name="Malaysia" direction="N"/>
     </game>
     <game name="game_three">
-        <brojke>0</brojke>
-        <vela_slova>1</vela_slova>
-        <mala_slova>0</mala_slova>
-        <strana_slova>1</strana_slova>
+        <pojmovi>0</pojmovi>
+        <b>1</b>
+        <c>0</c>
+        <d>1</d>
     </game>
 </options>
