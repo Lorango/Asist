@@ -4,11 +4,12 @@
         <natrix>0</natrix>
     </natrix>
     <game name="game_one">
-        <brojke>0</brojke>
+        <broj_izbora>5</broj_izbora>
+        <brojke_0>0</brojke_0>
+        <brojke_1>0</brojke_1>
         <vela_slova>1</vela_slova>
         <mala_slova>0</mala_slova>
         <strana_slova>0</strana_slova>
-        <broj_izbora>5</broj_izbora>
     </game>
     <game name="Singapore">
         <rank>1</rank>
@@ -17,10 +18,12 @@
         <neighbor name="Malaysia" direction="N"/>
     </game>
     <game name="game_three">
-        <pojmovi>0</pojmovi>
-        <b>1</b>
-        <c>0</c>
-        <d>1</d>
-        <broj_izbora>3</broj_izbora>
+        <broj_izbora>5</broj_izbora>
+        <aeiou>1</aeiou>
+        <bcčćd>1</bcčćd>
+        <džđfgh>1</džđfgh>
+        <jklljm>1</jklljm>
+        <nnjprs>1</nnjprs>
+        <štvzž>1</štvzž>
     </game>
 </options>

@@ -21,7 +21,7 @@ class Igra(natrix.predmet.PredmetSprite):
         self.slova = []  # objekti koji se stišće
 
         #  generiranje i pozicioniranje slova na ekran
-        self.n_ = int(options[4].text)  # broj izbora rješenja
+        self.n_ = int(options[0].text)  # broj izbora rješenja
 
         # delta - pomak između pojedinih izbora i između ruba ekrana
         delta = (1600-300*self.n_)/(self.n_+1)
@@ -43,14 +43,17 @@ class Igra(natrix.predmet.PredmetSprite):
 
         """
         self.ras = []  # sadrži sve indekse ke se more odabrat
-        eng = int(options[3].text)  # uključi engleske znakove
-        if int(options[0].text):
-            self.ras.extend(list(range(10 + 1)))
-
+        eng = int(options[5].text)  # uključi engleske znakove
         if int(options[1].text):
-            self.ras.extend(list(range(20, 50 + 4*eng)))
+            self.ras.extend(list(range(10)))
 
         if int(options[2].text):
+            self.ras.extend(list(range(10, 20)))
+
+        if int(options[3].text):
+            self.ras.extend(list(range(20, 50 + 4*eng)))
+
+        if int(options[4].text):
             self.ras.extend(list(range(60, 90 + 4*eng)))
 
         self.indeksi = random.sample(self.ras, self.n_)  # odabir kandidata

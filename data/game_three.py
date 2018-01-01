@@ -11,6 +11,7 @@ import natrix
 
 options = []
 
+
 class Igra(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200)):
         natrix.predmet.PredmetSprite.__init__(self,
@@ -20,7 +21,7 @@ class Igra(natrix.predmet.PredmetSprite):
         self.image_index = 0
         self.slova = []  # objekti koji se stišće
         #  generiranje i pozicioniranje slova na ekran
-        self.n_ = int(options[4].text)  # broj izbora rješenja
+        self.n_ = int(options[0].text)  # broj izbora rješenja
 
         # delta - pomak između pojedinih izbora i između ruba ekrana
         delta = (1600-300*self.n_)/(self.n_+1)
@@ -41,8 +42,12 @@ class Igra(natrix.predmet.PredmetSprite):
         """Popunjavanje i odabir slova ke će se pojavit na ekran.
 
         """
-#        self.ras = []  # sadrži sve indekse ke se more odabrat
-        self.ras = list(range(90))
+        # automatsko filtriranje
+        black = {x for x in range(150) if (x % 5) > 2}
+        # rucno filtriranje
+        black |= {42, 45, 61, 62, 95, 96, 97, 130, 131, 132, 147}
+
+        self.ras = set(range(150)) - black
 
         self.indeksi = random.sample(self.ras, self.n_)  # odabir kandidata
         self.image_index = random.choice(self.indeksi)  # odabir traženoga
@@ -66,7 +71,6 @@ class Slovo(natrix.predmet.PredmetSprite):
             self.parent.gen()
         else:
             print('Krivo', self.rect)
-
 
 
 natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (400, 0)}))
