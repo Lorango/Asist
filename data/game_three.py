@@ -45,12 +45,27 @@ class Igra(natrix.predmet.PredmetSprite):
         # automatsko filtriranje
         black = {x for x in range(150) if (x % 5) > 2}
         # rucno filtriranje
-        black |= {42, 45, 61, 62, 95, 96, 97, 130, 131, 132, 147}
+        black |= {42, 45, 61, 62, 96, 97, 131, 132, 147}
 
+        # raspon sličica
         self.ras = set(range(150)) - black
 
-        self.indeksi = random.sample(self.ras, self.n_)  # odabir kandidata
-        self.image_index = random.choice(self.indeksi)  # odabir traženoga
+        # odabir traženog slova a=0, ž=29
+        s_ = random.choice(list(range(30)))  # raspon traženog slova
+
+        # micanje nekorištenih indexa (black) iz liste mogućih indexa za slovo
+        self.d_ = {s_*5 + x for x in range(5)} - black
+        print(s_, self.d_)  # služi za testiranje
+
+        # odabir traženoga indeksa
+        self.image_index = random.sample(self.d_, 1)[0]
+
+        # micanje kandidata sa istim početnim slovom (self.ras - self.d_)
+        # odabir kandidata
+        self.indeksi = random.sample(self.ras - self.d_, self.n_ - 1)
+
+        self.indeksi.append(self.image_index)
+        random.shuffle(self.indeksi)
 
         # svakom slovu postavi njegov index
         for i, slovo in enumerate(self.slova):
@@ -66,11 +81,12 @@ class Slovo(natrix.predmet.PredmetSprite):
         self.image_index = i
 
     def lmb_down(self):
-        if self.image_index == self.parent.image_index:
-            print('Točno')
+        if self.image_index in self.parent.d_:
+#            print('Točno')
             self.parent.gen()
         else:
-            print('Krivo', self.rect)
+#            print('Krivo', self.rect)
+            pass
 
 
 natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (400, 0)}))
