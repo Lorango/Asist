@@ -19,11 +19,12 @@
     </game>
     <game name="game_three">
         <broj_izbora>5</broj_izbora>
-        <aeiou>1</aeiou>
-        <bcčćd>1</bcčćd>
-        <džđfgh>1</džđfgh>
-        <jklljm>1</jklljm>
-        <nnjprs>1</nnjprs>
+        <aeiou>0</aeiou>
+        <bcčćd>0</bcčćd>
+        <džđfgh>0</džđfgh>
+        <jklljm>0</jklljm>
+        <nnjprs>0</nnjprs>
         <štvzž>1</štvzž>
+        <odgovori_f>1</odgovori_f>
     </game>
 </options>

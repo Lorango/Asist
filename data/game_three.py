@@ -42,34 +42,65 @@ class Igra(natrix.predmet.PredmetSprite):
         """Popunjavanje i odabir slova ke će se pojavit na ekran.
 
         """
-        # automatsko filtriranje
-        black = {x for x in range(150) if (x % 5) > 2}
-        # rucno filtriranje
-        black |= {42, 45, 61, 62, 96, 97, 131, 132, 147}
+        black_set = {x for x in range(150) if (x % 5) > 2}
+        black_set |= {42, 45, 61, 62, 96, 97, 131, 132, 147}
 
-        # raspon sličica
-        self.ras = set(range(150)) - black
+        # generiranje pune liste setova indeksa
+        full_list = []
+        for i in range(30):
+            set_ = {i*5 + x for x in range(5)}
+            full_list.append(set_)
 
-        # odabir traženog slova a=0, ž=29
-        s_ = random.choice(list(range(30)))  # raspon traženog slova
+        print(full_list, '\n')
 
-        # micanje nekorištenih indexa (black) iz liste mogućih indexa za slovo
-        self.d_ = {s_*5 + x for x in range(5)} - black
-        print(s_, self.d_)  # služi za testiranje
+        # izbacivanje indeksa koji se nekoriste iz setova.
+        for i, set_ in enumerate(full_list):
+            full_list[i] -= black_set
 
-        # odabir traženoga indeksa
-        self.image_index = random.sample(self.d_, 1)[0]
+        print(full_list, '\n')
 
-        # micanje kandidata sa istim početnim slovom (self.ras - self.d_)
-        # odabir kandidata
-        self.indeksi = random.sample(self.ras - self.d_, self.n_ - 1)
+        # # test
 
-        self.indeksi.append(self.image_index)
-        random.shuffle(self.indeksi)
+        # pod set
+        g_sub = [[0, 8, 12, 20, 26],
+                 [1, 2, 3, 4, 5],
+                 [6, 7, 9, 10, 11],
+                 [13, 14, 15, 26, 17],
+                 [18, 19, 21, 22, 23],
+                 [24, 25, 27, 28, 29]]
+        # odabir podseta
+        sub_list = []
+        for i in range(6):
+            if int(options[i + 1].text):
+                sub_list += g_sub[i]
+        print(sub_list, '\n')
+
+        # odabir traženoga
+        self.image_index = random.choice(sub_list)
+        # odabir seta izbor slova
+        izbor_ = [self.image_index]
+
+        if not(int(options[7].text)):
+            # izaberi 4 iz skupa koji ne sadrži riješenje
+            izbor_ += random.sample(set(range(30)) - set(izbor_), 4)
+        else:
+            izbor_ += random.sample(set(sub_list) - set(izbor_), 4)
+
+        print(izbor_, '\n')
+
+        # odabir varijacija sličica
+        for i, data in enumerate(izbor_):
+            izbor_[i] = random.sample(full_list[data], 1)[0]
+
+        self.image_index = izbor_[0]
+
+        random.shuffle(izbor_)
+
+        print(izbor_, '\n')
 
         # svakom slovu postavi njegov index
         for i, slovo in enumerate(self.slova):
-            slovo.image_index = self.indeksi[i]
+            slovo.image_index = izbor_[i]
 
 
 class Slovo(natrix.predmet.PredmetSprite):
@@ -81,7 +112,7 @@ class Slovo(natrix.predmet.PredmetSprite):
         self.image_index = i
 
     def lmb_down(self):
-        if self.image_index in self.parent.d_:
+        if self.image_index == self.parent.image_index:
 #            print('Točno')
             self.parent.gen()
         else:
