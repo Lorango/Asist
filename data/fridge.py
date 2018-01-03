@@ -8,7 +8,7 @@ Samo test da vidin kako funkcionira gutgab i source tree-
 import natrix
 
 sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10))
-sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5))
+sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5), 0.5)
 
 class Goi(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200), room_name='room_0', image_index=0):

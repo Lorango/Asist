@@ -23,12 +23,18 @@ class Igra(natrix.predmet.PredmetSprite):
         #  generiranje i pozicioniranje slova na ekran
         self.n_ = int(options[0].text)  # broj izbora rješenja
 
-        # delta - pomak između pojedinih izbora i između ruba ekrana
-        delta = (1600-300*self.n_)/(self.n_+1)
+        # width - skalirana žirina sličice bez utjecaja skaliranja rezolucije
+        width = natrix.sprites['slike'].wh[0] / natrix.scale_f[0]
+
+        # delta - pomak između pojedinih izbora
+        delta = (natrix.rez_def[0] - width*self.n_)/(self.n_+1)
+
+        # 2*offset; offset - odmak od od ruba ekrana
+        offset = natrix.rez_def[0] - (width * self.n_ + delta * (self.n_ - 1))
+        offset //= 2
+
         for i in range(self.n_):
-            self.slova.append(Slovo(0,
-                                    (300*(i % self.n_) + delta*(1 + i), 350),
-                                    self))
+            self.slova.append(Slovo(0, (offset + i*(width+delta), 350), self))
 
         for i in self.slova:
             natrix.group_sprite.add(i)
@@ -42,22 +48,23 @@ class Igra(natrix.predmet.PredmetSprite):
         """Popunjavanje i odabir slova ke će se pojavit na ekran.
 
         """
-        black_set = {x for x in range(150) if (x % 5) > 2}
+        br_sl = 5 # broj sličica u sprite Sheetu.
+        black_set = {x for x in range(150) if (x % br_sl) > 2}
         black_set |= {42, 45, 61, 62, 96, 97, 131, 132, 147}
 
         # generiranje pune liste setova indeksa
         full_list = []
         for i in range(30):
-            set_ = {i*5 + x for x in range(5)}
+            set_ = {i*br_sl + x for x in range(br_sl)}
             full_list.append(set_)
 
-        print(full_list, '\n')
+#        print(full_list, '\n')
 
         # izbacivanje indeksa koji se nekoriste iz setova.
         for i, set_ in enumerate(full_list):
             full_list[i] -= black_set
 
-        print(full_list, '\n')
+#        print(full_list, '\n')
 
         # pod set
         g_sub = [[0, 8, 12, 20, 26],
@@ -72,7 +79,7 @@ class Igra(natrix.predmet.PredmetSprite):
         for i in range(6):
             if int(options[i + 1].text):
                 sub_list += g_sub[i]
-        print(sub_list, '\n')
+#        print(sub_list, '\n')
 
         # odabir traženoga
         self.image_index = random.choice(sub_list)
@@ -96,7 +103,7 @@ class Igra(natrix.predmet.PredmetSprite):
             else:
                 izbor_ += random.sample(izbor_lista, n_izb)
 
-        print(izbor_, '\n')
+#        print(izbor_, '\n')
 
         # odabir varijacija sličica
         for i, data in enumerate(izbor_):
@@ -106,7 +113,7 @@ class Igra(natrix.predmet.PredmetSprite):
 
         random.shuffle(izbor_)
 
-        print(izbor_, '\n')
+#        print(izbor_, '\n')
 
         # svakom slovu postavi njegov index
         for i, slovo in enumerate(self.slova):

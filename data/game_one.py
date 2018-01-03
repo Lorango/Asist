@@ -23,12 +23,18 @@ class Igra(natrix.predmet.PredmetSprite):
         #  generiranje i pozicioniranje slova na ekran
         self.n_ = int(options[0].text)  # broj izbora rješenja
 
-        # delta - pomak između pojedinih izbora i između ruba ekrana
-        delta = (1600-300*self.n_)/(self.n_+1)
+        # width - skalirana žirina sličice bez utjecaja skaliranja rezolucije
+        width = natrix.sprites['test_3'].wh[0] / natrix.scale_f[0]
+
+        # delta - pomak između pojedinih izbora
+        delta = (natrix.rez_def[0] - width*self.n_)/(self.n_+1)
+
+        # 2*offset; offset - odmak od od ruba ekrana
+        offset = natrix.rez_def[0] - (width*self.n_ + delta*(self.n_ - 1))
+        offset //= 2
+
         for i in range(self.n_):
-            self.slova.append(Slovo(0,
-                                    (300*(i % self.n_) + delta*(1 + i), 350),
-                                    self))
+            self.slova.append(Slovo(0, (offset + i*(width+delta), 350), self))
 
         for i in self.slova:
             natrix.group_sprite.add(i)

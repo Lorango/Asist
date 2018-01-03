@@ -44,6 +44,7 @@ neutral_c = pygame.Color(19, 25, 38)  # neutralno črno siva boja
 #  Kontrolne varijable
 rez_def = (1600, 900)  # izvorna rezolucija pri kojoj je igra razvijena
 #rez = (1600, 900)
+#rez = (1920, 1080)
 rez = (800, 450)  # rezolucija prikaza
 scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1])  # faktor skaliranja
 
@@ -66,7 +67,7 @@ tree = ET.parse('options.txt')
 options = tree.getroot()
 
 
-def scale(topleft):
+def scale(topleft, relative_size=1, rs=0):
     """Skaliranje koordinata.
     Prima polje koordinata (x, y), duljine 2. [topleft]
     Vraća skalirane koordinate (x', y'). [_topleft]
@@ -74,7 +75,11 @@ def scale(topleft):
     """
     _topleft = []
     for x, s in zip(topleft, scale_f):
-        _topleft.append(round(x*s))
+        if rs:
+            size = round(x*s*relative_size)
+        else:
+            size = round(x*s)
+        _topleft.append(size)
 
     return _topleft
 
@@ -110,7 +115,7 @@ class Sprite:
 
     """
     def __init__(self, sprite_name, image_path='data/images/brendan.png',
-                 size=[10, 10]):
+                 size=[10, 10], relative_size = 1):
 
         # size = [broj redova, broj stupaca]
 
@@ -119,6 +124,10 @@ class Sprite:
         self.size = size
         self.subimages = []
         self.speed = 30  # Broj potrebnih frame-ova za promjenu sličice.
+
+        self.wh = [100, 100]  # skalirana širina i visina podsličice
+        self.relative_size = relative_size
+
         self.load_image(image_path, size)
 
         sprites[sprite_name] = self
@@ -145,7 +154,9 @@ class Sprite:
             h = round(image_size[0]/size[1])
 
             # skalirana širina i visina podsličice
-            w_, h_ = natrix.scale((w, h))
+            w_, h_ = natrix.scale((w, h), self.relative_size, 1)
+#            self.wh = [w_, h_]
+            self.wh = [w_, h_]
             surface_ = pygame.Surface((w_ * size[1],
                                        h_ * size[0])).convert_alpha()
 
