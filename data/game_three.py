@@ -59,8 +59,6 @@ class Igra(natrix.predmet.PredmetSprite):
 
         print(full_list, '\n')
 
-        # # test
-
         # pod set
         g_sub = [[0, 8, 12, 20, 26],
                  [1, 2, 3, 4, 5],
@@ -68,6 +66,7 @@ class Igra(natrix.predmet.PredmetSprite):
                  [13, 14, 15, 26, 17],
                  [18, 19, 21, 22, 23],
                  [24, 25, 27, 28, 29]]
+
         # odabir podseta
         sub_list = []
         for i in range(6):
@@ -80,11 +79,22 @@ class Igra(natrix.predmet.PredmetSprite):
         # odabir seta izbor slova
         izbor_ = [self.image_index]
 
+        # broj izbora rješenja - 1
+        n_izb = int(options[0].text) - 1
+        duplikati = int(options[8].text)
         if not(int(options[7].text)):
-            # izaberi 4 iz skupa koji ne sadrži riješenje
-            izbor_ += random.sample(set(range(30)) - set(izbor_), 4)
+            # izaberi "n_izb" iz skupa koji ne sadrži riješenje
+            izbor_lista = list(set(range(30)) - set(izbor_))
+            if duplikati:
+                izbor_ += random.choices(izbor_lista, k=n_izb)
+            else:
+                izbor_ += random.sample(izbor_lista, n_izb)
         else:
-            izbor_ += random.sample(set(sub_list) - set(izbor_), 4)
+            izbor_lista = list(set(sub_list) - set(izbor_))
+            if duplikati:
+                izbor_ += random.choices(izbor_lista, k=n_izb)
+            else:
+                izbor_ += random.sample(izbor_lista, n_izb)
 
         print(izbor_, '\n')
 
