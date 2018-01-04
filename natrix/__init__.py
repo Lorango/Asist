@@ -15,7 +15,6 @@ import natrix.tools
 import natrix.predmet
 import natrix.gui
 
-
 tree = ET.parse('options.txt')
 options = tree.getroot()
 

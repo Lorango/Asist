@@ -4,6 +4,8 @@ Created on Tue Aug 29 14:45:47 2017
 Samo test da vidin kako funkcionira gutgab i source tree-
 @author: Lorango
 """
+
+import xml.etree.ElementTree as ET
 import pygame
 import natrix
 
@@ -20,6 +22,19 @@ class Goi(natrix.predmet.PredmetSprite):
 
     def lmb_down(self):
         natrix.goto_room(self.room_name)
+
+
+class Btn_1(Goi):
+    def lmb_down(self):
+        natrix.tree.write('test_xml.txt')
+        Goi.lmb_down(self)
+
+
+class Btn_def(Goi):
+    def lmb_down(self):
+        natrix.tree = ET.parse('options.txt')
+        natrix.options = natrix.tree.getroot()
+
 
 class Full_screen(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200), image_index=0):
@@ -69,14 +84,15 @@ natrix.rooms['room_3'] = natrix.tools.Room()
 natrix.rooms['room_options'] = natrix.tools.Room()
 natrix.rooms['room_res'] = natrix.tools.Room()
 
+# room 0 =================
 natrix.rooms['room_0'].clsarg.append((Save, {'topleft': (900, 50),
-                                            'image_index': 33}))
+                                             'image_index': 33}))
 
 natrix.rooms['room_0'].clsarg.append((Full_screen, {'topleft': (1300, 50),
-                                            'image_index': 29}))
+                                                    'image_index': 29}))
 
 natrix.rooms['room_0'].clsarg.append((Ugasi, {'topleft': (1300, 400),
-                                            'image_index': 49}))
+                                              'image_index': 49}))
 
 natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 50),
                                             'room_name': 'room_1',
@@ -94,35 +110,41 @@ natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (1350, 650),
                                             'room_name': 'room_options',
                                             'image_index': 4}))
 
+# room 1 =================
 natrix.rooms['room_1'].clsarg.append((Goi, {'topleft': (1350, 650),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
+# room 2 =================
 natrix.rooms['room_2'].clsarg.append((Goi, {'topleft': (1350, 650),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
+# room 3 =================
 natrix.rooms['room_3'].clsarg.append((Goi, {'topleft': (1350, 650),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
-natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (1350, 650),
-                                            'room_name': 'room_0',
-                                            'image_index': 0}))
+# room options =================
+natrix.rooms['room_options'].clsarg.append((Btn_1, {'topleft': (1350, 650),
+                                                    'room_name': 'room_0',
+                                                    'image_index': 0}))
+
+natrix.rooms['room_options'].clsarg.append((Btn_def, {'topleft': (1050, 650),
+                                                      'room_name': 'room_0',
+                                                      'image_index': 25}))
 
 natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 50),
-                                            'room_name': 'room_res',
-                                            'image_index': 5}))
+                                                  'room_name': 'room_res',
+                                                  'image_index': 5}))
 
+# room res =================
 natrix.rooms['room_res'].clsarg.append((Goi, {'topleft': (1350, 650),
-                                            'room_name': 'room_options',
-                                            'image_index': 4}))
+                                              'room_name': 'room_options',
+                                              'image_index': 4}))
 
 import data.game_one
-#data.game_one.options = natrix.options[1]
-
 import data.game_two
-#data.game_two.options = natrix.options[2]
-
 import data.game_three
-#data.game_three.options = natrix.options[3]
+
+import data.game_options
