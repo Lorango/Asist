@@ -1,30 +1,33 @@
 <?xml version="1.0"?>
 <options>
     <natrix name="natrix">
-        <natrix>0</natrix>
+        <resolution>
+            <width>800</width>
+            <height>450</height>
+        </resolution>
     </natrix>
     <game name="game_one">
-        <broj_izbora>3</broj_izbora>
+        <broj_izbora>5</broj_izbora>
         <brojke_0>0</brojke_0>
         <brojke_1>0</brojke_1>
         <vela_slova>1</vela_slova>
         <mala_slova>0</mala_slova>
         <strana_slova>0</strana_slova>
     </game>
-    <game name="Singapore">
-        <rank>1</rank>
-        <year>2011</year>
-        <gdppc>59900</gdppc>
-        <neighbor name="Malaysia" direction="N"/>
+    <game name="ph">
+        <ph>1</ph>
+        <ph>2011</ph>
+        <ph>59900</ph>
+        <ph name="ph" direction="ph"/>
     </game>
     <game name="game_three">
         <broj_izbora>5</broj_izbora>
         <aeiou>1</aeiou>
-        <bcčćd>1</bcčćd>
-        <džđfgh>1</džđfgh>
+        <bcccd>1</bcccd>
+        <dzdfgh>1</dzdfgh>
         <jklljm>1</jklljm>
         <nnjprs>1</nnjprs>
-        <štvzž>1</štvzž>
+        <stvzz>1</stvzz>
         <filter>0</filter>
         <duplikati>0</duplikati>
     </game>

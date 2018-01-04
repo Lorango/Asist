@@ -8,7 +8,7 @@ Created on Sun Dec 24 13:53:13 2017
 import random
 import natrix
 
-options = []
+options = natrix.options[1]
 
 
 class Igra(natrix.predmet.PredmetSprite):

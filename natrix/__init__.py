@@ -16,6 +16,9 @@ import natrix.predmet
 import natrix.gui
 
 
+tree = ET.parse('options.txt')
+options = tree.getroot()
+
 pygame.font.init()
 font_def = pygame.font.Font(None, 50)
 
@@ -45,9 +48,11 @@ neutral_c = pygame.Color(19, 25, 38)  # neutralno črno siva boja
 rez_def = (1600, 900)  # izvorna rezolucija pri kojoj je igra razvijena
 #rez = (1600, 900)
 #rez = (1920, 1080)
-rez = (800, 450)  # rezolucija prikaza
+#rez = (800, 450)  # rezolucija prikaza
+rez = (int(options[0][0][0].text), int(options[0][0][1].text))
 scale_f = (rez[0]/rez_def[0], rez[1]/rez_def[1])  # faktor skaliranja
 
+full_screen = False
 screen = pygame.display.set_mode(rez)
 clock = pygame.time.Clock()
 
@@ -62,9 +67,6 @@ group_sprite = natrix.predmet.GroupCameraSprite()
 #group_gui = natrix.predmet.Group()
 
 rooms['room_0'] = natrix.tools.Room()
-
-tree = ET.parse('options.txt')
-options = tree.getroot()
 
 
 def scale(topleft, relative_size=1, rs=0):
