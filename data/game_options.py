@@ -37,6 +37,59 @@ class Btn_rez(natrix.predmet.PredmetSprite):
         natrix.goto_room(self.room_name)
 ##
 
+class Btn_gn(natrix.predmet.PredmetSprite):
+    """broj odgovora
+
+    """
+    def __init__(self,
+                 topleft=(200, 200),
+                 game=1,
+                 image_index=0):
+
+        natrix.predmet.PredmetSprite.__init__(self,
+                                              natrix.sprites['test_3'],
+                                              topleft)
+
+
+        self.game = game
+        self.image_index = int(natrix.options[self.game][0].text)
+        natrix.group_sprite.add(self)
+
+    def lmb_down(self):
+        self.image_index += 1
+        if self.image_index > 5:
+            self.image_index = 3
+
+        natrix.options[self.game][0].text = str(self.image_index)
+
+class Btn_gopcija(natrix.predmet.PredmetSprite):
+    """pali gasi opciju
+
+    """
+    def __init__(self,
+                 topleft=(200, 200),
+                 game=1,
+                 opcija_id=1,
+                 image_index=0):
+
+        natrix.predmet.PredmetSprite.__init__(self,
+                                              natrix.sprites['test_3'],
+                                              topleft)
+
+
+        self.game = game
+        self.opcija_id = opcija_id
+        self.value = int(natrix.options[self.game][self.opcija_id].text)
+        self.image_index = self.value*10 + 60
+        natrix.group_sprite.add(self)
+
+    def lmb_down(self):
+        self.value = not(self.value)
+        self.image_index = self.value*10 + 60
+
+        natrix.options[self.game][self.opcija_id].text = str(int(self.value))
+        print(len(natrix.options[self.game]))
+##
 
 
 for j, ratio in enumerate(res):
@@ -46,3 +99,43 @@ for j, ratio in enumerate(res):
                                              'room_name': 'room_options',
                                              'image_index': 60+i+5*j,
                                              'res': r_}))
+
+# room game options 1 =================
+natrix.rooms['room_opt_1'].clsarg.append((Btn_gn,
+                                         {'topleft': (50, 50),
+                                          'game': 1,
+                                          'image_index': int(natrix.options[1][0].text)}))
+
+for i in range(1, 5):
+    natrix.rooms['room_opt_1'].clsarg.append((Btn_gopcija,
+                                             {'topleft': (50 + 280 * (i-1), 280),
+                                              'game': 1,
+                                              'opcija_id': i}))
+
+natrix.rooms['room_opt_1'].clsarg.append((Btn_gopcija,
+                                             {'topleft': (50 + 280 * 2, 610),
+                                              'game': 1,
+                                              'opcija_id': 5}))
+
+
+# room game options 3 =================
+natrix.rooms['room_opt_3'].clsarg.append((Btn_gn,
+                                         {'topleft': (50, 50),
+                                          'game': 3,
+                                          'image_index': int(natrix.options[3][0].text)}))
+
+for i in range(1, 7):
+    natrix.rooms['room_opt_3'].clsarg.append((Btn_gopcija,
+                                             {'topleft': (50 + 260 * (i-1), 280),
+                                              'game': 3,
+                                              'opcija_id': i}))
+
+
+
+
+
+
+
+
+
+

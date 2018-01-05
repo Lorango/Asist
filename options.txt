@@ -28,7 +28,7 @@
         <jklljm>1</jklljm>
         <nnjprs>1</nnjprs>
         <stvzz>1</stvzz>
-        <filter>0</filter>
+        <filter>1</filter>
         <duplikati>0</duplikati>
     </game>
 </options>
