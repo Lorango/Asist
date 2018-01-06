@@ -72,13 +72,7 @@ class Igra(natrix.predmet.PredmetSprite):
             slovo.image_index = self.indeksi[i]
 
         # pozovi sintezu govora
-#        snt.fun_1(self.image_index)
-
         natrix.kond.generator(self.image_index)
-#        natrix.kond.test()
-        """fasdaskdjkjdk kjk jlsars
-
-        """
 
 
 class Slovo(natrix.predmet.PredmetSprite):
@@ -90,10 +84,6 @@ class Slovo(natrix.predmet.PredmetSprite):
         self.image_index = i
 
     def lmb_down(self):
-#        sound = natrix.sounds[str(self.image_index)]
-#        sound.play()
-#        natrix.kanal.queue(sound)
-
         if self.image_index == self.parent.image_index:
 #            print('Točno')
             natrix.kond.stop()

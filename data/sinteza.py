@@ -20,17 +20,13 @@ class Kond():
         pass
 
     def stop(self):
+        natrix.kanal.stop()
         self.queue = deque([])
 
     def update_queue(self):
-#        if self.stop:
-#            self.queue = deque([])
-#            self.stop = False
-
         if len(self.queue) > 0:
             i = self.queue.popleft()
             natrix.kanal.queue(natrix.sounds[str(i)])
-        pass
 
     def generator(self, index):
         """ds

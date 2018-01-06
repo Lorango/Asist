@@ -28,6 +28,7 @@ class Goi(natrix.predmet.PredmetSprite):
         natrix.group_sprite.add(self)
 
     def lmb_down(self):
+        natrix.kond.stop()
         natrix.goto_room(self.room_name)
 
 
