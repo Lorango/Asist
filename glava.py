@@ -8,7 +8,8 @@ Created on Tue Aug 29 14:45:47 2017
 import sys
 import pygame
 import natrix
-import data.fridge as fridge
+import data.fridge
+
 
 natrix.rooms['room_0'].start()
 
@@ -18,6 +19,7 @@ while True:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            pygame.mixer.quit()
             pygame.quit()
             sys.exit(0)
 
@@ -34,6 +36,11 @@ while True:
                     if predmet.rect.collidepoint(event.pos):
                         predmet.lmb_down()
                         break
+
+        if event.type == 25:
+            print('Mjuzik')
+            natrix.kond.update_queue()
+
 
     natrix.step()
     natrix.draw()

@@ -8,9 +8,9 @@
     </natrix>
     <game name="game_one">
         <broj_izbora>5</broj_izbora>
-        <brojke_0>0</brojke_0>
+        <brojke_0>1</brojke_0>
         <brojke_1>0</brojke_1>
-        <vela_slova>1</vela_slova>
+        <vela_slova>0</vela_slova>
         <mala_slova>0</mala_slova>
         <strana_slova>0</strana_slova>
     </game>

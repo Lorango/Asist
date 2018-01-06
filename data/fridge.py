@@ -12,6 +12,13 @@ import natrix
 sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10), 0.75)
 sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5), 0.75)
 
+# učitavanje zvukova
+for i in range(64):
+    file_name = 'sound/{}.ogg'.format(i)
+    natrix.sounds[str(i)] = pygame.mixer.Sound(file_name)
+
+
+
 class Goi(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200), room_name='room_0', image_index=0):
         natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)

@@ -15,10 +15,19 @@ import natrix.tools
 import natrix.predmet
 import natrix.gui
 
+import data.sinteza as snt
+
 tree = ET.parse('options.txt')
 options = tree.getroot()
 
 pygame.font.init()
+pygame.mixer.init(frequency=48000)
+#pygame.mixer.init(frequency=70000)
+kanal = pygame.mixer.Channel(0)
+kanal.set_endevent(25)
+kond = snt.Kond()
+
+
 font_def = pygame.font.Font(None, 50)
 
 print('Test za vidit koliko puti će se učitat natrix modul.')
@@ -57,6 +66,7 @@ clock = pygame.time.Clock()
 
 images = {}
 sprites = {}
+sounds = {}
 rooms = {}
 
 camera = natrix.tools.Camera()

@@ -6,7 +6,9 @@ Created on Sun Dec 24 13:53:13 2017
 """
 
 import random
+import pygame
 import natrix
+
 
 options = natrix.options[1]
 
@@ -69,6 +71,15 @@ class Igra(natrix.predmet.PredmetSprite):
         for i, slovo in enumerate(self.slova):
             slovo.image_index = self.indeksi[i]
 
+        # pozovi sintezu govora
+#        snt.fun_1(self.image_index)
+
+        natrix.kond.generator(self.image_index)
+#        natrix.kond.test()
+        """fasdaskdjkjdk kjk jlsars
+
+        """
+
 
 class Slovo(natrix.predmet.PredmetSprite):
     def __init__(self, i=0, topleft=(200, 200), parent=None):
@@ -79,11 +90,16 @@ class Slovo(natrix.predmet.PredmetSprite):
         self.image_index = i
 
     def lmb_down(self):
+#        sound = natrix.sounds[str(self.image_index)]
+#        sound.play()
+#        natrix.kanal.queue(sound)
+
         if self.image_index == self.parent.image_index:
-            print('Točno')
+#            print('Točno')
             self.parent.gen()
         else:
-            print('Krivo', self.rect)
+            pass
+#            print('Krivo', self.rect)
 
 
 natrix.rooms['room_1'].clsarg.append((Igra, {'topleft': (400, 0)}))
