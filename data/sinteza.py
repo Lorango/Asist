@@ -29,7 +29,7 @@ class Kond():
             natrix.kanal.queue(natrix.sounds[str(i)])
 
     def generator(self, index):
-        """ds
+        """Generator za prvu igru
 
         """
         self.queue = deque([54])
@@ -49,23 +49,10 @@ class Kond():
         self.update_queue()
 
     def generator_3(self, index):
-        """
+        """Generator za treću igru
 
         """
-        self.queue = deque([54, 59])
-#        if index >= 0 and index <= 19:
-#            self.queue.append(58)
-#
-#        elif index >= 20 and index <= 59:
-#            self.queue.append(56)
-#            self.queue.append(57)
-#
-#        elif index >= 60 and index <= 99:
-#            self.queue.append(55)
-#            self.queue.append(57)
-#            index -= 40
-#
-#        self.queue.append(index)
+        self.queue = deque([54, 59, index + 20])
         self.update_queue()
 
     def test(self):

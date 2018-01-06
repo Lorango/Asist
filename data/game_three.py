@@ -83,6 +83,9 @@ class Igra(natrix.predmet.PredmetSprite):
 
         # odabir traženoga
         self.image_index = random.choice(sub_list)
+
+        natrix.kond.generator_3(self.image_index)  # generiraj listu za izgovor
+
         # odabir seta izbor slova
         izbor_ = [self.image_index]
 
