@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 29 14:45:47 2017
-Samo test da vidin kako funkcionira gutgab i source tree-
+
 @author: Lorango
 """
 
@@ -90,16 +90,16 @@ class Ugasi(natrix.predmet.PredmetSprite):
         else:
             pygame.display.set_mode(natrix.rez)
 
-class Save(natrix.predmet.PredmetSprite):
-    def __init__(self, topleft=(200, 200), image_index=0):
-        natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
-
-        self.image_index = image_index
-        natrix.group_sprite.add(self)
-
-    def lmb_down(self):
-        natrix.options[0][0][0].text = str(500)
-        natrix.tree.write('test_xml.txt')
+#class Save(natrix.predmet.PredmetSprite):
+#    def __init__(self, topleft=(200, 200), image_index=0):
+#        natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
+#
+#        self.image_index = image_index
+#        natrix.group_sprite.add(self)
+#
+#    def lmb_down(self):
+#        natrix.options[0][0][0].text = str(500)
+#        natrix.tree.write('test_xml.txt')
 
 
 
@@ -114,13 +114,11 @@ natrix.rooms['room_opt_2'] = natrix.tools.Room()
 natrix.rooms['room_opt_3'] = natrix.tools.Room()
 
 # room 0 =================
-natrix.rooms['room_0'].clsarg.append((Save, {'topleft': (900, 50),
-                                             'image_index': 33}))
+#natrix.rooms['room_0'].clsarg.append((Save, {'topleft': (900, 50),
+#                                             'image_index': 33}))
 
-natrix.rooms['room_0'].clsarg.append((Full_screen, {'topleft': (1300, 50),
-                                                    'image_index': 29}))
 
-natrix.rooms['room_0'].clsarg.append((Ugasi, {'topleft': (1300, 400),
+natrix.rooms['room_0'].clsarg.append((Ugasi, {'topleft': (1350, 50),
                                               'image_index': 49}))
 
 natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 50),
@@ -177,6 +175,9 @@ natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (350, 350),
 natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (650, 350),
                                                   'room_name': 'room_opt_3',
                                                   'image_index': 8}))
+
+natrix.rooms['room_options'].clsarg.append((Full_screen, {'topleft': (1350, 50),
+                                                    'image_index': 29}))
 
 # room res =================
 natrix.rooms['room_res'].clsarg.append((Goi, {'topleft': (1350, 650),
