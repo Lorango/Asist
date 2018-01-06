@@ -43,9 +43,9 @@ class Btn_popravi(Goi):
 
         fuse = True
         for i in range(1, a):
-            fuse = fuse and int(natrix.options[self.game][i].text)
+            fuse = fuse and not(int(natrix.options[self.game][i].text))
 #            natrix.options[self.game][self.opcija_id].text = str(int(self.value))
-        if fuse == 0:
+        if fuse == 1:
             natrix.options[self.game][1].text = str(1)
         Goi.lmb_down(self)
 
