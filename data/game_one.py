@@ -96,9 +96,12 @@ class Slovo(natrix.predmet.PredmetSprite):
 
         if self.image_index == self.parent.image_index:
 #            print('Točno')
+            natrix.kond.stop()
+            natrix.kanal.play(natrix.sounds['62'])
             self.parent.gen()
         else:
-            pass
+            natrix.kond.stop()
+            natrix.kanal.play(natrix.sounds['60'])
 #            print('Krivo', self.rect)
 
 
