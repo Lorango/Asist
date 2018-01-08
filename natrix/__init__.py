@@ -9,6 +9,7 @@ game engine koji objedinjuje igru, pygame i Tiled editor (.tmx i .tsx)
 Modul sadrši funkcionalnosti za stvaranje soba, kamera i slično.
 """
 
+import math
 import xml.etree.ElementTree as ET
 import pygame
 import natrix.tools
@@ -65,6 +66,7 @@ screen = pygame.display.set_mode(rez)
 clock = pygame.time.Clock()
 
 images = {}
+static_images = {}
 sprites = {}
 sounds = {}
 rooms = {}
@@ -77,6 +79,7 @@ group_sprite = natrix.predmet.GroupCameraSprite()
 
 rooms['room_0'] = natrix.tools.Room()
 
+room_t = 'room_0' # trenutna soba
 
 def scale(topleft, relative_size=1, rs=0):
     """Skaliranje koordinata.
@@ -114,6 +117,11 @@ def draw():
 
     """
     screen.fill(neutral_c)
+
+    image_name = rooms[room_t].static_image
+    if image_name is not None:
+        screen.blit(static_images[image_name].surface, (0,0))
+
     camera.update()
 #    group.draw(screen)
     group_sprite.draw()
@@ -197,7 +205,62 @@ class Sprite:
 
 
 def goto_room(room_name='room_0'):
+    global room_t
     room = rooms[room_name]
     room.stop()
     room.start()
+    room_t = room_name
     pass
+
+
+class Static_image():
+    def __init__(self, sprite_name, image_path='', relative_size=1, stretch=[1, 1]):
+
+        print('sadfasdf dsjf jsdfa lsdajfh')
+
+        self.name = sprite_name
+        self.surface = None
+        self.relative_size = relative_size
+        self.stretch = stretch
+
+        self.load_image(image_path)
+        self.resize(stretch)
+
+        static_images[sprite_name] = self
+        pass
+
+    def load_image(self, image_path):
+        self.surface = pygame.image.load(image_path).convert_alpha()
+
+    def resize(self, stretch):
+        size = self.surface.get_size()
+
+        new_size = []
+        for s, res, raz in zip(size, scale_f, stretch):
+            a = math.ceil(s * res * raz)
+            new_size.append(a)
+
+        print(new_size)
+        self.surface = pygame.transform.smoothscale(self.surface, new_size)
+
+#        pygame.Surface(new_size)
+
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

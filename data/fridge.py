@@ -9,8 +9,12 @@ import xml.etree.ElementTree as ET
 import pygame
 import natrix
 
-sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10), 0.75)
-sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5), 0.75)
+sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10), 0.70)
+sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5), 0.70)
+sprite_3 = natrix.Sprite('ribe', 'grafics/ribe.png', (3, 3), 0.60)
+
+static_image_0 = natrix.Static_image('more', 'grafics/podmorje.png', 1, (0.986436498, 1.125))
+natrix.Static_image('plain', 'grafics/pozadina.jpg', 1, (1, 1))
 
 # učitavanje zvukova
 for i in range(64):
@@ -125,6 +129,7 @@ natrix.rooms['room_opt_3'] = natrix.tools.Room()
 #natrix.rooms['room_0'].clsarg.append((Save, {'topleft': (900, 50),
 #                                             'image_index': 33}))
 
+natrix.rooms['room_0'].static_image = 'plain'
 
 natrix.rooms['room_0'].clsarg.append((Ugasi, {'topleft': (1350, 50),
                                               'image_index': 49}))
@@ -146,16 +151,19 @@ natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (1350, 650),
                                             'image_index': 4}))
 
 # room 1 =================
+natrix.rooms['room_1'].static_image = 'plain'
 natrix.rooms['room_1'].clsarg.append((Goi, {'topleft': (1350, 650),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
 # room 2 =================
+natrix.rooms['room_2'].static_image = 'more'
 natrix.rooms['room_2'].clsarg.append((Goi, {'topleft': (1350, 650),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
 # room 3 =================
+natrix.rooms['room_3'].static_image = 'plain'
 natrix.rooms['room_3'].clsarg.append((Goi, {'topleft': (1350, 650),
                                             'room_name': 'room_0',
                                             'image_index': 0}))

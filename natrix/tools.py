@@ -80,6 +80,8 @@ class Room():
 
         self._create()
 
+        self.static_image = None # statična slika
+
 #        self.persistent = False
 #        self.group = None
 
