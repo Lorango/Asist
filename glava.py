@@ -46,7 +46,7 @@ while True:
                             break
 
         if event.type == 25:
-            print('Mjuzik')
+#            print('Mjuzik')
             natrix.kond.update_queue()
 
 

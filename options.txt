@@ -1,9 +1,8 @@
-<?xml version="1.0"?>
 <options>
     <natrix name="natrix">
         <resolution>
-            <width>1920</width>
-            <height>1080</height>
+            <width>1280</width>
+            <height>720</height>
         </resolution>
     </natrix>
     <game name="game_one">
@@ -18,7 +17,7 @@
         <ph>1</ph>
         <ph>2011</ph>
         <ph>59900</ph>
-        <ph name="ph" direction="ph"/>
+        <ph direction="ph" name="ph" />
     </game>
     <game name="game_three">
         <broj_izbora>5</broj_izbora>
@@ -28,7 +27,7 @@
         <jklljm>1</jklljm>
         <nnjprs>1</nnjprs>
         <stvzz>1</stvzz>
-        <filter>1</filter>
+        <filter>0</filter>
         <duplikati>0</duplikati>
     </game>
 </options>

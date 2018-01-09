@@ -51,7 +51,7 @@ class Btn_popravi(Goi):
         elif self.game == 2:
             a = 1
         elif self.game == 3:
-            a = 6
+            a = 7
 
         fuse = True
         for i in range(1, a):
@@ -64,13 +64,13 @@ class Btn_popravi(Goi):
 
 class Btn_1(Goi):
     def lmb_down(self):
-        natrix.tree.write('test_xml.txt')
+        natrix.tree.write('options.txt')
         Goi.lmb_down(self)
 
 
 class Btn_def(Goi):
     def lmb_down(self):
-        natrix.tree = ET.parse('options.txt')
+        natrix.tree = ET.parse('data/options.txt')
         natrix.options = natrix.tree.getroot()
 
 
@@ -146,34 +146,34 @@ natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 650),
                                             'room_name': 'room_3',
                                             'image_index': 3}))
 
-natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (1350, 650),
+natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_options',
                                             'image_index': 4}))
 
 # room 1 =================
 natrix.rooms['room_1'].static_image = 'plain'
-natrix.rooms['room_1'].clsarg.append((Goi, {'topleft': (1350, 650),
+natrix.rooms['room_1'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
 # room 2 =================
 natrix.rooms['room_2'].static_image = 'more'
-natrix.rooms['room_2'].clsarg.append((Goi, {'topleft': (1350, 650),
+natrix.rooms['room_2'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
 # room 3 =================
 natrix.rooms['room_3'].static_image = 'plain'
-natrix.rooms['room_3'].clsarg.append((Goi, {'topleft': (1350, 650),
+natrix.rooms['room_3'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_0',
                                             'image_index': 0}))
 
 # room options =================
-natrix.rooms['room_options'].clsarg.append((Btn_1, {'topleft': (1350, 650),
+natrix.rooms['room_options'].clsarg.append((Btn_1, {'topleft': (1400, 700),
                                                     'room_name': 'room_0',
                                                     'image_index': 0}))
 
-natrix.rooms['room_options'].clsarg.append((Btn_def, {'topleft': (1050, 650),
+natrix.rooms['room_options'].clsarg.append((Btn_def, {'topleft': (1100, 700),
                                                       'image_index': 25}))
 
 natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 50),
@@ -196,22 +196,22 @@ natrix.rooms['room_options'].clsarg.append((Full_screen, {'topleft': (1350, 50),
                                                     'image_index': 29}))
 
 # room res =================
-natrix.rooms['room_res'].clsarg.append((Goi, {'topleft': (1350, 650),
+natrix.rooms['room_res'].clsarg.append((Goi, {'topleft': (1400, 700),
                                               'room_name': 'room_options',
                                               'image_index': 4}))
 
 # room game options 1 =================
-natrix.rooms['room_opt_1'].clsarg.append((Btn_popravi, {'topleft': (1350, 650),
+natrix.rooms['room_opt_1'].clsarg.append((Btn_popravi, {'topleft': (1400, 700),
                                             'room_name': 'room_options',
                                             'image_index': 4,
                                             'game': 1}))
 
 # room game options 2 =================
-natrix.rooms['room_opt_2'].clsarg.append((Goi, {'topleft': (1350, 650),
+natrix.rooms['room_opt_2'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_options',
                                             'image_index': 4}))
 # room game options 3 =================
-natrix.rooms['room_opt_3'].clsarg.append((Btn_popravi, {'topleft': (1350, 650),
+natrix.rooms['room_opt_3'].clsarg.append((Btn_popravi, {'topleft': (1400, 700),
                                             'room_name': 'room_options',
                                             'image_index': 4,
                                             'game': 3}))

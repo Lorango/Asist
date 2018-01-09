@@ -95,4 +95,4 @@ class Slovo(natrix.predmet.PredmetSprite):
 #            print('Krivo', self.rect)
 
 
-natrix.rooms['room_1'].clsarg.append((Igra, {'topleft': (400, 0)}))
+natrix.rooms['room_1'].clsarg.append((Igra, {'topleft': (-450, 0)}))

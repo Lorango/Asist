@@ -25,7 +25,7 @@ class Igra(natrix.predmet.PredmetSprite):
 
         #  generiranje i pozicioniranje slova na ekran
         for i in range(n_):
-            self.broji.append(Broj([1350, 230*i], 0, self))
+            self.broji.append(Broj([1350, 210*i], 0, self))
 
         for i in self.broji:
             natrix.group_sprite.add(i)
@@ -96,4 +96,4 @@ class Riba(natrix.predmet.PredmetSprite):
 
 
 
-natrix.rooms['room_2'].clsarg.append((Igra, {'topleft': (-150, -150)}))
+natrix.rooms['room_2'].clsarg.append((Igra, {'topleft': (-450, 0)}))

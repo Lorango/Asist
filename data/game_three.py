@@ -51,7 +51,7 @@ class Igra(natrix.predmet.PredmetSprite):
         br_sl = 5 # broj sličica u sprite Sheetu.
 #        black_set = {x for x in range(150) if (x % br_sl) > 2}
 #        black_set |= {42, 45, 61, 62, 96, 97, 131, 132, 147}
-        black_set = {23, 24, 38, 39, 44, 63, 64, 84, 96, 97, 98, 99}
+        black_set = {23, 24, 35, 37, 38, 39, 44, 63, 64, 84, 96, 97, 98, 99}
 
         # generiranje pune liste setova indeksa
         full_list = []
@@ -89,6 +89,7 @@ class Igra(natrix.predmet.PredmetSprite):
 
         # odabir seta izbor slova
         izbor_ = [self.image_index]
+
 
         # broj izbora rješenja - 1
         n_izb = int(options[0].text) - 1
@@ -143,4 +144,4 @@ class Slovo(natrix.predmet.PredmetSprite):
             pass
 
 
-natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (400, 0)}))
+natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (-450, 0)}))
