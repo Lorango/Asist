@@ -10,7 +10,7 @@ import pygame
 import natrix
 
 options = natrix.options[2]
-
+n_ = 3  # broj ponuđenih odgovora
 
 class Igra(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200)):
@@ -24,7 +24,7 @@ class Igra(natrix.predmet.PredmetSprite):
         self.broj = 0
 
         #  generiranje i pozicioniranje slova na ekran
-        for i in range(4):
+        for i in range(n_):
             self.broji.append(Broj([1350, 230*i], 0, self))
 
         for i in self.broji:
@@ -38,15 +38,15 @@ class Igra(natrix.predmet.PredmetSprite):
 
         self.ribe = []
 
-        svi = random.sample(list(range(1, 11)), 4)
+        svi = random.sample(list(range(1, 11)), n_)
 
         self.broj = random.choice(svi)
 
         mesta = random.sample(list(range(20)), k=self.broj)
         print(mesta)
 
-        stan = [[0, 1, 7], [0, 1, 7], [0, 1, 7], [0, 1, 7], [0, 1, 7],
-                [0, 1, 2, 4], [0, 1, 7], [0, 1, 7], [0, 1, 7], [0, 1, 7],
+        stan = [[0, 1], [0, 1], [0, 1], [0, 1], [0, 1],
+                [0, 1, 2, 4], [0, 1], [0, 1, 7], [0, 1, 7], [0, 1, 7],
                 [2, 4], [5, 6, 8], [2, 4], [5, 6, 8], [2, 4, 7],
                 [5, 6, 8], [5, 6, 8], [3, 5, 6, 8], [3, 5, 6, 8], [3, 5, 6, 8]]
 

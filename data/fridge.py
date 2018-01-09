@@ -9,8 +9,8 @@ import xml.etree.ElementTree as ET
 import pygame
 import natrix
 
-sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10), 0.70)
-sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5), 0.70)
+sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10), 0.60)
+sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5), 0.60)
 sprite_3 = natrix.Sprite('ribe', 'grafics/ribe.png', (3, 3), 0.60)
 
 static_image_0 = natrix.Static_image('more', 'grafics/podmorje.png', 1, (0.986436498, 1.125))

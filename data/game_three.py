@@ -49,8 +49,9 @@ class Igra(natrix.predmet.PredmetSprite):
 
         """
         br_sl = 5 # broj sličica u sprite Sheetu.
-        black_set = {x for x in range(150) if (x % br_sl) > 2}
-        black_set |= {42, 45, 61, 62, 96, 97, 131, 132, 147}
+#        black_set = {x for x in range(150) if (x % br_sl) > 2}
+#        black_set |= {42, 45, 61, 62, 96, 97, 131, 132, 147}
+        black_set = {23, 24, 38, 39, 44, 63, 64, 84, 96, 97, 98, 99}
 
         # generiranje pune liste setova indeksa
         full_list = []
@@ -133,10 +134,12 @@ class Slovo(natrix.predmet.PredmetSprite):
 
     def lmb_down(self):
         if self.image_index == self.parent.image_index:
-#            print('Točno')
+            natrix.kond.stop()
+            natrix.kanal.play(natrix.sounds['62'])
             self.parent.gen()
         else:
-#            print('Krivo', self.rect)
+            natrix.kond.stop()
+            natrix.kanal.play(natrix.sounds['60'])
             pass
 
 

@@ -2,8 +2,8 @@
 <options>
     <natrix name="natrix">
         <resolution>
-            <width>800</width>
-            <height>450</height>
+            <width>1920</width>
+            <height>1080</height>
         </resolution>
     </natrix>
     <game name="game_one">
