@@ -169,8 +169,8 @@ class Sprite:
         if image_path not in images.keys():
             surface = pygame.image.load(image_path).convert_alpha()
             image_size = surface.get_size()
-            w = round(image_size[1]/size[0])  # širina podsličice
-            h = round(image_size[0]/size[1])
+            w = round(image_size[0]/size[1])  # širina podsličice
+            h = round(image_size[1]/size[0])
 
             # skalirana širina i visina podsličice
             w_, h_ = natrix.scale((w, h), self.relative_size, 1)

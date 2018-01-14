@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <options>
     <natrix name="natrix">
         <resolution>
@@ -8,7 +9,7 @@
     <game name="game_one">
         <broj_izbora>5</broj_izbora>
         <brojke_0>1</brojke_0>
-        <brojke_1>1</brojke_1>
+        <brojke_1>0</brojke_1>
         <vela_slova>0</vela_slova>
         <mala_slova>0</mala_slova>
         <strana_slova>0</strana_slova>
@@ -17,14 +18,14 @@
         <ph>1</ph>
         <ph>2011</ph>
         <ph>59900</ph>
-        <ph direction="ph" name="ph" />
+        <ph name="ph" direction="ph"/>
     </game>
     <game name="game_three">
         <broj_izbora>5</broj_izbora>
         <aeiou>1</aeiou>
         <bcccd>1</bcccd>
         <dzdfgh>1</dzdfgh>
-        <jklljm>0</jklljm>
+        <jklljm>1</jklljm>
         <nnjprs>1</nnjprs>
         <stvzz>1</stvzz>
         <filter>0</filter>

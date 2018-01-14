@@ -20,7 +20,7 @@ class Btn_rez(natrix.predmet.PredmetSprite):
                  res=(800, 600)):
 
         natrix.predmet.PredmetSprite.__init__(self,
-                                              natrix.sprites['test_3'],
+                                              natrix.sprites['rez'],
                                               topleft)
 
         self.room_name = room_name
@@ -73,19 +73,21 @@ class Btn_gopcija(natrix.predmet.PredmetSprite):
                  image_index=0):
 
         natrix.predmet.PredmetSprite.__init__(self,
-                                              natrix.sprites['test_3'],
+                                              natrix.sprites['ikone'],
                                               topleft)
 
 
         self.game = game
         self.opcija_id = opcija_id
         self.value = int(natrix.options[self.game][self.opcija_id].text)
-        self.image_index = self.value*10 + 60
+#        self.image_index = self.value*10 + 60
+        self.image_index = self.value
         natrix.group_sprite.add(self)
 
     def lmb_down(self):
         self.value = not(self.value)
-        self.image_index = self.value*10 + 60
+#        self.image_index = self.value*10 + 60
+        self.image_index = self.value
 
         natrix.options[self.game][self.opcija_id].text = str(int(self.value))
         print(len(natrix.options[self.game]))
@@ -95,9 +97,9 @@ class Btn_gopcija(natrix.predmet.PredmetSprite):
 for j, ratio in enumerate(res):
     for i, r_ in enumerate(ratio):
         natrix.rooms['room_res'].clsarg.append((Btn_rez,
-                                            {'topleft': (50 + 350 * i, 230 * j),
+                                            {'topleft': (30 + 330 * i, 30 + 200 * j),
                                              'room_name': 'room_options',
-                                             'image_index': 60+i+5*j,
+                                             'image_index': i + 4*j,
                                              'res': r_}))
 
 # room game options 1 =================

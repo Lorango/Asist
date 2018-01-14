@@ -13,6 +13,10 @@ sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10), 0.60)
 sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5), 0.60)
 sprite_3 = natrix.Sprite('ribe', 'grafics/ribe.png', (3, 3), 0.60)
 
+natrix.Sprite('ikone', 'grafics/buttons.png', (3, 3), 0.50)
+natrix.Sprite('buttons', 'grafics/button_slova.png', (6, 4))
+natrix.Sprite('rez', 'grafics/button_rez.png', (4, 4))
+
 static_image_0 = natrix.Static_image('more', 'grafics/podmorje.png', 1, (0.986436498, 1.125))
 natrix.Static_image('plain', 'grafics/pozadina.jpg', 1, (1, 1))
 
@@ -24,8 +28,9 @@ for i in range(64):
 
 
 class Goi(natrix.predmet.PredmetSprite):
-    def __init__(self, topleft=(200, 200), room_name='room_0', image_index=0):
-        natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
+    def __init__(self, topleft=(200, 200), room_name='room_0',
+                 sprite=natrix.sprites['test_3'], image_index=0):
+        natrix.predmet.PredmetSprite.__init__(self, sprite, topleft)
 
         self.room_name = room_name
         self.image_index = image_index
@@ -40,8 +45,8 @@ class Btn_popravi(Goi):
     """provjeri ispravnost opcija
 
     """
-    def __init__(self, topleft=(200, 200), room_name='room_0', image_index=0, game=1):
-        Goi.__init__(self, topleft, room_name, image_index)
+    def __init__(self, topleft=(200, 200), room_name='room_0', sprite=natrix.sprites['test_3'], image_index=0, game=1):
+        Goi.__init__(self, topleft, room_name, sprite, image_index)
         self.game = game
         pass
 
@@ -90,7 +95,8 @@ class Full_screen(natrix.predmet.PredmetSprite):
 
 class Ugasi(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200), image_index=0):
-        natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
+        natrix.predmet.PredmetSprite.__init__(self,
+                                              natrix.sprites['ikone'], topleft)
 
         self.image_index = image_index
         natrix.group_sprite.add(self)
@@ -132,65 +138,77 @@ natrix.rooms['room_opt_3'] = natrix.tools.Room()
 natrix.rooms['room_0'].static_image = 'plain'
 
 natrix.rooms['room_0'].clsarg.append((Ugasi, {'topleft': (1350, 50),
-                                              'image_index': 49}))
+                                              'image_index': 6}))
 
 natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 50),
                                             'room_name': 'room_1',
-                                            'image_index': 1}))
+                                            'sprite' : natrix.sprites['buttons'],
+                                            'image_index': 0}))
 
 natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 350),
                                             'room_name': 'room_2',
-                                            'image_index': 2}))
+                                            'sprite' : natrix.sprites['buttons'],
+                                            'image_index': 1}))
 
 natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (100, 650),
                                             'room_name': 'room_3',
-                                            'image_index': 3}))
+                                            'sprite' : natrix.sprites['buttons'],
+                                            'image_index': 2}))
 
 natrix.rooms['room_0'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_options',
-                                            'image_index': 4}))
+                                            'sprite' : natrix.sprites['ikone'],
+                                            'image_index': 2}))
 
 # room 1 =================
 natrix.rooms['room_1'].static_image = 'plain'
 natrix.rooms['room_1'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_0',
-                                            'image_index': 0}))
+                                            'sprite' : natrix.sprites['ikone'],
+                                            'image_index': 7}))
 
 # room 2 =================
 natrix.rooms['room_2'].static_image = 'more'
 natrix.rooms['room_2'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_0',
-                                            'image_index': 0}))
+                                            'sprite' : natrix.sprites['ikone'],
+                                            'image_index': 7}))
 
 # room 3 =================
 natrix.rooms['room_3'].static_image = 'plain'
 natrix.rooms['room_3'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_0',
-                                            'image_index': 0}))
+                                            'sprite' : natrix.sprites['ikone'],
+                                            'image_index': 7}))
 
 # room options =================
 natrix.rooms['room_options'].clsarg.append((Btn_1, {'topleft': (1400, 700),
                                                     'room_name': 'room_0',
-                                                    'image_index': 0}))
+                                                    'sprite' : natrix.sprites['ikone'],
+                                                    'image_index': 7}))
 
 natrix.rooms['room_options'].clsarg.append((Btn_def, {'topleft': (1100, 700),
                                                       'image_index': 25}))
 
 natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 50),
                                                   'room_name': 'room_res',
+                                                  'sprite' : natrix.sprites['buttons'],
+                                                  'image_index': 3}))
+
+natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 250),
+                                                  'room_name': 'room_opt_1',
+                                                  'sprite' : natrix.sprites['buttons'],
+                                                  'image_index': 4}))
+
+natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 450),
+                                                  'room_name': 'room_opt_2',
+                                                  'sprite' : natrix.sprites['buttons'],
                                                   'image_index': 5}))
 
-natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 350),
-                                                  'room_name': 'room_opt_1',
-                                                  'image_index': 6}))
-
-natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (350, 350),
-                                                  'room_name': 'room_opt_2',
-                                                  'image_index': 7}))
-
-natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (650, 350),
+natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 650),
                                                   'room_name': 'room_opt_3',
-                                                  'image_index': 8}))
+                                                  'sprite' : natrix.sprites['buttons'],
+                                                  'image_index': 6}))
 
 natrix.rooms['room_options'].clsarg.append((Full_screen, {'topleft': (1350, 50),
                                                     'image_index': 29}))
@@ -198,22 +216,26 @@ natrix.rooms['room_options'].clsarg.append((Full_screen, {'topleft': (1350, 50),
 # room res =================
 natrix.rooms['room_res'].clsarg.append((Goi, {'topleft': (1400, 700),
                                               'room_name': 'room_options',
-                                              'image_index': 4}))
+                                              'sprite' : natrix.sprites['ikone'],
+                                              'image_index': 7}))
 
 # room game options 1 =================
 natrix.rooms['room_opt_1'].clsarg.append((Btn_popravi, {'topleft': (1400, 700),
                                             'room_name': 'room_options',
-                                            'image_index': 4,
+                                            'sprite' : natrix.sprites['ikone'],
+                                            'image_index': 7,
                                             'game': 1}))
 
 # room game options 2 =================
 natrix.rooms['room_opt_2'].clsarg.append((Goi, {'topleft': (1400, 700),
                                             'room_name': 'room_options',
-                                            'image_index': 4}))
+                                            'sprite' : natrix.sprites['ikone'],
+                                            'image_index': 7}))
 # room game options 3 =================
 natrix.rooms['room_opt_3'].clsarg.append((Btn_popravi, {'topleft': (1400, 700),
                                             'room_name': 'room_options',
-                                            'image_index': 4,
+                                            'sprite' : natrix.sprites['ikone'],
+                                            'image_index': 7,
                                             'game': 3}))
 
 import data.game_one
