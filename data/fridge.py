@@ -13,9 +13,10 @@ sprite_1 = natrix.Sprite('test_3', 'grafics/slova4.png', (10, 10), 0.60)
 sprite_2 = natrix.Sprite('slike', 'grafics/slike2.png', (30, 5), 0.60)
 sprite_3 = natrix.Sprite('ribe', 'grafics/ribe.png', (3, 3), 0.60)
 
-natrix.Sprite('ikone', 'grafics/buttons.png', (3, 3), 0.50)
+natrix.Sprite('ikone', 'grafics/buttons.png', (3, 3), 0.40)
 natrix.Sprite('buttons', 'grafics/button_slova.png', (6, 4))
-natrix.Sprite('rez', 'grafics/button_rez.png', (4, 4))
+natrix.Sprite('rez', 'grafics/button_rez.png', (4, 4), 0.8)
+natrix.Sprite('opis', 'grafics/opis.png', (7, 3), 0.7)
 
 static_image_0 = natrix.Static_image('more', 'grafics/podmorje.png', 1, (0.986436498, 1.125))
 natrix.Static_image('plain', 'grafics/pozadina.jpg', 1, (1, 1))
@@ -80,10 +81,12 @@ class Btn_def(Goi):
 
 
 class Full_screen(natrix.predmet.PredmetSprite):
-    def __init__(self, topleft=(200, 200), image_index=0):
-        natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
+    def __init__(self, topleft=(200, 200),
+                 sprite=natrix.sprites['ikone'], image_index=0):
 
-        self.image_index = image_index
+        natrix.predmet.PredmetSprite.__init__(self, sprite, topleft)
+
+        self.image_index = 3 + natrix.full_screen
         natrix.group_sprite.add(self)
 
     def lmb_down(self):
@@ -92,6 +95,8 @@ class Full_screen(natrix.predmet.PredmetSprite):
             pygame.display.set_mode(natrix.rez, pygame.FULLSCREEN)
         else:
             pygame.display.set_mode(natrix.rez)
+
+        self.image_index = 3 + natrix.full_screen
 
 class Ugasi(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200), image_index=0):
@@ -108,7 +113,14 @@ class Ugasi(natrix.predmet.PredmetSprite):
         else:
             pygame.display.set_mode(natrix.rez)
 
-#class Save(natrix.predmet.PredmetSprite):
+#class Opis(natrix.predmet.PredmetSprite):
+#    def __init__(self, topleft=(200, 200), sprite=None, image_index=0):
+#        natrix.predmet.PredmetSprite.__init__(self,
+#                                              sprite, topleft)
+#
+#        self.image_index = image_index
+
+ #class Save(natrix.predmet.PredmetSprite):
 #    def __init__(self, topleft=(200, 200), image_index=0):
 #        natrix.predmet.PredmetSprite.__init__(self, sprite_1, topleft)
 #
@@ -188,7 +200,8 @@ natrix.rooms['room_options'].clsarg.append((Btn_1, {'topleft': (1400, 700),
                                                     'image_index': 7}))
 
 natrix.rooms['room_options'].clsarg.append((Btn_def, {'topleft': (1100, 700),
-                                                      'image_index': 25}))
+                                                      'sprite' : natrix.sprites['ikone'],
+                                                      'image_index': 8}))
 
 natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 50),
                                                   'room_name': 'room_res',

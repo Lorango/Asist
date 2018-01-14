@@ -31,6 +31,7 @@ class Btn_rez(natrix.predmet.PredmetSprite):
     def lmb_down(self):
         natrix.options[0][0][0].text = str(self.res[0])
         natrix.options[0][0][1].text = str(self.res[1])
+        natrix.tree.write('options.txt')
 #        natrix.rez = list(self.res)
 #        pygame.display.set_mode(natrix.rez, pygame.FULLSCREEN)
 #        print(self.res)
@@ -93,29 +94,45 @@ class Btn_gopcija(natrix.predmet.PredmetSprite):
         print(len(natrix.options[self.game]))
 ##
 
+class Opis(natrix.predmet.PredmetSprite):
+    def __init__(self, topleft=(200, 200), sprite=None, image_index=0):
+        natrix.predmet.PredmetSprite.__init__(self,
+                                              sprite, topleft)
+
+        self.image_index = image_index
+
+# room rez =====================
 
 for j, ratio in enumerate(res):
     for i, r_ in enumerate(ratio):
         natrix.rooms['room_res'].clsarg.append((Btn_rez,
-                                            {'topleft': (30 + 330 * i, 30 + 200 * j),
+                                            {'topleft': (30 + 270 * i, 30 + 150 * j),
                                              'room_name': 'room_options',
                                              'image_index': i + 4*j,
                                              'res': r_}))
 
+natrix.rooms['room_res'].clsarg.append((Opis, {'topleft': (30, 650),
+                                               'sprite' : natrix.sprites['opis'],
+                                               'image_index': 0}))
+
 # room game options 1 =================
 natrix.rooms['room_opt_1'].clsarg.append((Btn_gn,
-                                         {'topleft': (50, 50),
+                                         {'topleft': (1000, 50),
                                           'game': 1,
                                           'image_index': int(natrix.options[1][0].text)}))
 
 for i in range(1, 5):
     natrix.rooms['room_opt_1'].clsarg.append((Btn_gopcija,
-                                             {'topleft': (50 + 280 * (i-1), 280),
+                                             {'topleft': (600, 50 + (i-1) * 180),
                                               'game': 1,
                                               'opcija_id': i}))
 
+    natrix.rooms['room_opt_1'].clsarg.append((Opis, {'topleft': (30, 30 + (i-1) * 180),
+                                               'sprite' : natrix.sprites['opis'],
+                                               'image_index': i}))
+
 natrix.rooms['room_opt_1'].clsarg.append((Btn_gopcija,
-                                             {'topleft': (50 + 280 * 2, 610),
+                                             {'topleft': (1000, 610),
                                               'game': 1,
                                               'opcija_id': 5}))
 
