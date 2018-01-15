@@ -92,6 +92,9 @@ class Btn_gopcija(natrix.predmet.PredmetSprite):
 
         natrix.options[self.game][self.opcija_id].text = str(int(self.value))
         print(len(natrix.options[self.game]))
+
+#        for i in natrix.options[self.game]:
+#            print(i.text)
 ##
 
 class Opis(natrix.predmet.PredmetSprite):
@@ -143,6 +146,9 @@ natrix.rooms['room_opt_1'].clsarg.append((Btn_gopcija,
 natrix.rooms['room_opt_1'].clsarg.append((Opis, {'topleft': (800, 390),
                                                'sprite' : natrix.sprites['opis'],
                                                'image_index': 6}))
+
+# room game options 2 =================
+
 
 # room game options 3 =================
 natrix.rooms['room_opt_3'].clsarg.append((Btn_gn,

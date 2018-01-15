@@ -19,6 +19,9 @@ class Igra(natrix.predmet.PredmetSprite):
                                               natrix.sprites['test_3'],
                                               topleft)
 
+        global options
+        options = natrix.options[1]
+
         self.image_index = 0
         self.slova = []  # objekti koji se stišće
 

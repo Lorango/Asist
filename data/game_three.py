@@ -11,12 +11,14 @@ import natrix
 
 options = natrix.options[3]
 
-
 class Igra(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200)):
         natrix.predmet.PredmetSprite.__init__(self,
                                               natrix.sprites['slike'],
                                               topleft)
+
+        global options
+        options = natrix.options[3]
 
         self.image_index = 0
         self.slova = []  # objekti koji se stišće
@@ -38,6 +40,9 @@ class Igra(natrix.predmet.PredmetSprite):
 
         for i in self.slova:
             natrix.group_sprite.add(i)
+
+        self.pomoc = Pomoc((0, 300), natrix.sprites['test_3'])
+        natrix.group_sprite.add(self.pomoc)
 
         self.gen()
 
@@ -84,6 +89,7 @@ class Igra(natrix.predmet.PredmetSprite):
 
         # odabir traženoga
         self.image_index = random.choice(sub_list)
+        self.pomoc.image_index = self.image_index + 20# služi za pomoć
 
         natrix.kond.generator_3(self.image_index)  # generiraj listu za izgovor
 
@@ -143,5 +149,13 @@ class Slovo(natrix.predmet.PredmetSprite):
             natrix.kanal.play(natrix.sounds['60'])
             pass
 
+class Pomoc(natrix.predmet.PredmetSprite):
+    def __init__(self, topleft=(200, 200), sprite=None, image_index=0):
+        natrix.predmet.PredmetSprite.__init__(self, sprite, topleft)
 
-natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (-450, 0)}))
+        self.image_index = image_index
+
+#natrix.rooms['room_3'].clsarg.append((Pomoc, {'topleft': (300, 0),
+#                                              'sprite': natrix.sprites['test_3']}))
+
+natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (0, 0)}))

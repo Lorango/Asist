@@ -18,14 +18,18 @@ class Igra(natrix.predmet.PredmetSprite):
                                               natrix.sprites['test_3'],
                                               topleft)
 
+        global options
+        options = natrix.options[2]
+
         self.image_index = 0
         self.ribe = []
         self.broji = []
         self.broj = 0
+        self.broj_max = int(options[0].text)  # maksimalni broj riba ki se more pojavit.
 
         #  generiranje i pozicioniranje slova na ekran
         for i in range(n_):
-            self.broji.append(Broj([1350, 210*i], 0, self))
+            self.broji.append(Broj([1350, 30 + 210*i], 0, self))
 
         for i in self.broji:
             natrix.group_sprite.add(i)
@@ -38,7 +42,7 @@ class Igra(natrix.predmet.PredmetSprite):
 
         self.ribe = []
 
-        svi = random.sample(list(range(1, 11)), n_)
+        svi = random.sample(list(range(1, self.broj_max + 1)), n_)
 
         self.broj = random.choice(svi)
 
