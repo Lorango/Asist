@@ -91,15 +91,20 @@ class Full_screen(natrix.predmet.PredmetSprite):
         self.image_index = 3 + natrix.full_screen
         natrix.group_sprite.add(self)
 
+        self.opis = Opis((-600, 40), natrix.sprites['opis'], 16)
+        natrix.group_sprite.add(self.opis)
+
     def lmb_down(self):
         natrix.full_screen = not(natrix.full_screen)
         if natrix.full_screen:
             try:
                 pygame.display.set_mode(natrix.rez, pygame.FULLSCREEN)
+                self.opis.rect.topleft = natrix.scale((-600, 40)) # nije nužno u praksi nebitrabalo ničemu služit
             except:
                 print('Izabrana rezolucija je veća od trenutne rezulucije prikaza!')
                 print('Odabrati manju rezoluciju prikaza!')
                 natrix.full_screen = 0
+                self.opis.rect.topleft = natrix.scale((950, 40))
         else:
             pygame.display.set_mode(natrix.rez)
 
