@@ -45,7 +45,8 @@ class Btn_gn(natrix.predmet.PredmetSprite):
     def __init__(self,
                  topleft=(200, 200),
                  game=1,
-                 image_index=0):
+                 image_index=0,
+                 min_=3, max_=5):
 
         natrix.predmet.PredmetSprite.__init__(self,
                                               natrix.sprites['test_3'],
@@ -54,12 +55,14 @@ class Btn_gn(natrix.predmet.PredmetSprite):
 
         self.game = game
         self.image_index = int(natrix.options[self.game][0].text)
+        self.min_ = min_
+        self.max_ = max_
         natrix.group_sprite.add(self)
 
     def lmb_down(self):
         self.image_index += 1
-        if self.image_index > 5:
-            self.image_index = 3
+        if self.image_index > self.max_:
+            self.image_index = self.min_
 
         natrix.options[self.game][0].text = str(self.image_index)
 
@@ -148,6 +151,15 @@ natrix.rooms['room_opt_1'].clsarg.append((Opis, {'topleft': (800, 390),
                                                'image_index': 6}))
 
 # room game options 2 =================
+natrix.rooms['room_opt_2'].clsarg.append((Btn_gn,
+                                         {'topleft': (1350, 15),
+                                          'game': 2,
+                                          'image_index': int(natrix.options[2][0].text),
+                                          'max_': 10}))
+
+natrix.rooms['room_opt_2'].clsarg.append((Opis, {'topleft': (800, 30),
+                                               'sprite' : natrix.sprites['opis'],
+                                               'image_index': 15}))
 
 
 # room game options 3 =================
@@ -159,12 +171,6 @@ natrix.rooms['room_opt_3'].clsarg.append((Btn_gn,
 natrix.rooms['room_opt_3'].clsarg.append((Opis, {'topleft': (800, 30),
                                                'sprite' : natrix.sprites['opis'],
                                                'image_index': 7}))
-
-#for i in range(1, 7):
-#    natrix.rooms['room_opt_3'].clsarg.append((Btn_gopcija,
-#                                             {'topleft': (550, 40 + (i-1)*180),
-#                                              'game': 3,
-#                                              'opcija_id': i}))
 
 for i in range(1, 5):
     natrix.rooms['room_opt_3'].clsarg.append((Btn_gopcija,
@@ -185,6 +191,15 @@ for i in range(5, 7):
     natrix.rooms['room_opt_3'].clsarg.append((Opis, {'topleft': (800, 30 + (i-5) * 180 + 180),
                                                'sprite' : natrix.sprites['opis'],
                                                'image_index': i+7}))
+
+natrix.rooms['room_opt_3'].clsarg.append((Btn_gopcija,
+                                             {'topleft': (1330, 15 + 570),
+                                              'game': 3,
+                                              'opcija_id': 9}))
+
+natrix.rooms['room_opt_3'].clsarg.append((Opis, {'topleft': (800, 570),
+                                               'sprite' : natrix.sprites['opis'],
+                                               'image_index': 14}))
 
 
 

@@ -19,7 +19,9 @@ natrix.Sprite('rez', 'grafics/button_rez.png', (4, 4), 0.8)
 natrix.Sprite('opis', 'grafics/opis.png', (7, 3), 0.7)
 
 static_image_0 = natrix.Static_image('more', 'grafics/podmorje.png', 1, (0.986436498, 1.125))
-natrix.Static_image('plain', 'grafics/pozadina.jpg', 1, (0.85, 0.9))
+natrix.Static_image('plain', 'grafics/pozadina.jpg', 1, (1.00, 1.00))
+natrix.Static_image('noc', 'grafics/noc.jpg', 1, (1.00, 1.00))
+natrix.Static_image('option', 'grafics/option.jpg', 1, (1.00, 1.00))
 
 # učitavanje zvukova
 for i in range(64):
@@ -195,13 +197,14 @@ natrix.rooms['room_2'].clsarg.append((Goi, {'topleft': (1450, 750),
                                             'image_index': 7}))
 
 # room 3 =================
-natrix.rooms['room_3'].static_image = 'plain'
+natrix.rooms['room_3'].static_image = 'noc'
 natrix.rooms['room_3'].clsarg.append((Goi, {'topleft': (1450, 750),
                                             'room_name': 'room_0',
                                             'sprite' : natrix.sprites['ikone'],
                                             'image_index': 7}))
 
 # room options =================
+natrix.rooms['room_options'].static_image = 'option'
 natrix.rooms['room_options'].clsarg.append((Btn_1, {'topleft': (1450, 750),
                                                     'room_name': 'room_0',
                                                     'sprite' : natrix.sprites['ikone'],
@@ -240,12 +243,14 @@ natrix.rooms['room_options'].clsarg.append((Full_screen, {'topleft': (1450, 50),
                                                     'image_index': 29}))
 
 # room res =================
+natrix.rooms['room_res'].static_image = 'option'
 natrix.rooms['room_res'].clsarg.append((Goi, {'topleft': (1450, 750),
                                               'room_name': 'room_options',
                                               'sprite' : natrix.sprites['ikone'],
                                               'image_index': 7}))
 
 # room game options 1 =================
+natrix.rooms['room_opt_1'].static_image = 'option'
 natrix.rooms['room_opt_1'].clsarg.append((Btn_popravi, {'topleft': (1450, 750),
                                             'room_name': 'room_options',
                                             'sprite' : natrix.sprites['ikone'],
@@ -253,11 +258,13 @@ natrix.rooms['room_opt_1'].clsarg.append((Btn_popravi, {'topleft': (1450, 750),
                                             'game': 1}))
 
 # room game options 2 =================
+natrix.rooms['room_opt_2'].static_image = 'option'
 natrix.rooms['room_opt_2'].clsarg.append((Goi, {'topleft': (1450, 750),
                                             'room_name': 'room_options',
                                             'sprite' : natrix.sprites['ikone'],
                                             'image_index': 7}))
 # room game options 3 =================
+natrix.rooms['room_opt_3'].static_image = 'option'
 natrix.rooms['room_opt_3'].clsarg.append((Btn_popravi, {'topleft': (1450, 750),
                                             'room_name': 'room_options',
                                             'sprite' : natrix.sprites['ikone'],

@@ -28,5 +28,6 @@
         <stvzz>0</stvzz>
         <filter>0</filter>
         <duplikati>0</duplikati>
+        <pomoc>0</pomoc>
     </game>
 </options>

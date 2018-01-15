@@ -41,7 +41,7 @@ class Igra(natrix.predmet.PredmetSprite):
         for i in self.slova:
             natrix.group_sprite.add(i)
 
-        self.pomoc = Pomoc((0, 300), natrix.sprites['test_3'])
+        self.pomoc = Pomoc((710, 30 - 500 + 500*int(options[9].text)), natrix.sprites['test_3'])
         natrix.group_sprite.add(self.pomoc)
 
         self.gen()
@@ -155,7 +155,4 @@ class Pomoc(natrix.predmet.PredmetSprite):
 
         self.image_index = image_index
 
-#natrix.rooms['room_3'].clsarg.append((Pomoc, {'topleft': (300, 0),
-#                                              'sprite': natrix.sprites['test_3']}))
-
-natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (0, 0)}))
+natrix.rooms['room_3'].clsarg.append((Igra, {'topleft': (-450, 0)}))
