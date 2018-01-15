@@ -146,19 +146,39 @@ natrix.rooms['room_opt_1'].clsarg.append((Opis, {'topleft': (800, 390),
 
 # room game options 3 =================
 natrix.rooms['room_opt_3'].clsarg.append((Btn_gn,
-                                         {'topleft': (50, 50),
+                                         {'topleft': (1350, 15),
                                           'game': 3,
                                           'image_index': int(natrix.options[3][0].text)}))
 
-for i in range(1, 7):
+natrix.rooms['room_opt_3'].clsarg.append((Opis, {'topleft': (800, 30),
+                                               'sprite' : natrix.sprites['opis'],
+                                               'image_index': 7}))
+
+#for i in range(1, 7):
+#    natrix.rooms['room_opt_3'].clsarg.append((Btn_gopcija,
+#                                             {'topleft': (550, 40 + (i-1)*180),
+#                                              'game': 3,
+#                                              'opcija_id': i}))
+
+for i in range(1, 5):
     natrix.rooms['room_opt_3'].clsarg.append((Btn_gopcija,
-                                             {'topleft': (50 + 260 * (i-1), 280),
+                                             {'topleft': (550, 40 + (i-1)*180),
                                               'game': 3,
                                               'opcija_id': i}))
 
+    natrix.rooms['room_opt_3'].clsarg.append((Opis, {'topleft': (30, 30 + (i-1) * 180),
+                                               'sprite' : natrix.sprites['opis'],
+                                               'image_index': i+7}))
 
+for i in range(5, 7):
+    natrix.rooms['room_opt_3'].clsarg.append((Btn_gopcija,
+                                             {'topleft': (1330, 40 + (i-5)*180 + 180),
+                                              'game': 3,
+                                              'opcija_id': i}))
 
-
+    natrix.rooms['room_opt_3'].clsarg.append((Opis, {'topleft': (800, 30 + (i-5) * 180 + 180),
+                                               'sprite' : natrix.sprites['opis'],
+                                               'image_index': i+7}))
 
 
 
