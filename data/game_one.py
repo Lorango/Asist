@@ -6,7 +6,6 @@ Created on Sun Dec 24 13:53:13 2017
 """
 
 import random
-import pygame
 import natrix
 
 
@@ -88,14 +87,12 @@ class Slovo(natrix.predmet.PredmetSprite):
 
     def lmb_down(self):
         if self.image_index == self.parent.image_index:
-#            print('Točno')
             natrix.kond.stop()
             natrix.kanal.play(natrix.sounds['62'])
             self.parent.gen()
         else:
             natrix.kond.stop()
             natrix.kanal.play(natrix.sounds['60'])
-#            print('Krivo', self.rect)
 
 
 natrix.rooms['room_1'].clsarg.append((Igra, {'topleft': (-450, 0)}))

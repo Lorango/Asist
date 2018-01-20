@@ -181,7 +181,6 @@ class Group:
 
         self.predmets = []
 
-
     def draw(self, surface):
         """Docstring
 

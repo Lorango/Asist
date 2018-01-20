@@ -6,11 +6,11 @@ Created on Sun Dec 24 13:53:52 2017
 """
 
 import random
-import pygame
 import natrix
 
 options = natrix.options[2]
 n_ = 3  # broj ponuđenih odgovora
+
 
 class Igra(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200)):
@@ -25,7 +25,8 @@ class Igra(natrix.predmet.PredmetSprite):
         self.ribe = []
         self.broji = []
         self.broj = 0
-        self.broj_max = int(options[0].text)  # maksimalni broj riba ki se more pojavit.
+        # maksimalni broj riba ki se more pojavit.
+        self.broj_max = int(options[0].text)
 
         #  generiranje i pozicioniranje slova na ekran
         for i in range(n_):
@@ -65,10 +66,8 @@ class Igra(natrix.predmet.PredmetSprite):
         for i in self.ribe:
             natrix.group_sprite.add(i)
 
-
         for i, br in enumerate(svi):
             self.broji[i].image_index = br
-
 
 
 class Broj(natrix.predmet.PredmetSprite):
@@ -79,7 +78,7 @@ class Broj(natrix.predmet.PredmetSprite):
 
         self.parent = parent
         self.image_index = image_index
-#
+
     def lmb_down(self):
         if self.image_index == self.parent.broj:
             natrix.kond.stop()
@@ -97,7 +96,6 @@ class Riba(natrix.predmet.PredmetSprite):
                                               topleft)
 
         self.image_index = image_index
-
 
 
 natrix.rooms['room_2'].clsarg.append((Igra, {'topleft': (-450, 0)}))

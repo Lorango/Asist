@@ -11,6 +11,7 @@ import natrix
 
 options = natrix.options[3]
 
+
 class Igra(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200)):
         natrix.predmet.PredmetSprite.__init__(self,
@@ -41,7 +42,9 @@ class Igra(natrix.predmet.PredmetSprite):
         for i in self.slova:
             natrix.group_sprite.add(i)
 
-        self.pomoc = Pomoc((710, 30 - 500 + 500*int(options[9].text)), natrix.sprites['test_3'])
+        self.pomoc = Pomoc((710, 30 - 500 + 500*int(options[9].text)),
+                           natrix.sprites['test_3'])
+
         natrix.group_sprite.add(self.pomoc)
 
         self.gen()
@@ -53,7 +56,7 @@ class Igra(natrix.predmet.PredmetSprite):
         """Popunjavanje i odabir slova ke će se pojavit na ekran.
 
         """
-        br_sl = 5 # broj sličica u sprite Sheetu.
+        br_sl = 5  # broj sličica u sprite Sheetu.
 #        black_set = {x for x in range(150) if (x % br_sl) > 2}
 #        black_set |= {42, 45, 61, 62, 96, 97, 131, 132, 147}
         black_set = {23, 24, 35, 37, 38, 39, 44, 63, 64, 84, 96, 97, 98, 99}
@@ -89,13 +92,12 @@ class Igra(natrix.predmet.PredmetSprite):
 
         # odabir traženoga
         self.image_index = random.choice(sub_list)
-        self.pomoc.image_index = self.image_index + 20# služi za pomoć
+        self.pomoc.image_index = self.image_index + 20  # služi za pomoć
 
         natrix.kond.generator_3(self.image_index)  # generiraj listu za izgovor
 
         # odabir seta izbor slova
         izbor_ = [self.image_index]
-
 
         # broj izbora rješenja - 1
         n_izb = int(options[0].text) - 1
@@ -114,8 +116,6 @@ class Igra(natrix.predmet.PredmetSprite):
             else:
                 izbor_ += random.sample(izbor_lista, n_izb)
 
-#        print(izbor_, '\n')
-
         # odabir varijacija sličica
         for i, data in enumerate(izbor_):
             izbor_[i] = random.sample(full_list[data], 1)[0]
@@ -123,8 +123,6 @@ class Igra(natrix.predmet.PredmetSprite):
         self.image_index = izbor_[0]
 
         random.shuffle(izbor_)
-
-#        print(izbor_, '\n')
 
         # svakom slovu postavi njegov index
         for i, slovo in enumerate(self.slova):
@@ -147,7 +145,7 @@ class Slovo(natrix.predmet.PredmetSprite):
         else:
             natrix.kond.stop()
             natrix.kanal.play(natrix.sounds['60'])
-            pass
+
 
 class Pomoc(natrix.predmet.PredmetSprite):
     def __init__(self, topleft=(200, 200), sprite=None, image_index=0):

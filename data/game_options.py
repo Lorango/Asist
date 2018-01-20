@@ -4,13 +4,14 @@ Created on Thu Jan  4 16:31:46 2018
 
 @author: Lorango
 """
-import pygame
+
 import natrix
 
 res = [[(1280, 720), (1366, 768), (1600, 900), (1920, 1080)],
        [(1280, 800), (1440, 900), (1680, 1050), (1920, 1200)],
        [(800, 600), (1024, 786), (1152, 864), (1600, 1200)],
        [(800, 480), (1280, 768), (1280, 1024)]]
+
 
 class Btn_rez(natrix.predmet.PredmetSprite):
     def __init__(self,
@@ -32,11 +33,8 @@ class Btn_rez(natrix.predmet.PredmetSprite):
         natrix.options[0][0][0].text = str(self.res[0])
         natrix.options[0][0][1].text = str(self.res[1])
         natrix.tree.write('options.txt')
-#        natrix.rez = list(self.res)
-#        pygame.display.set_mode(natrix.rez, pygame.FULLSCREEN)
-#        print(self.res)
         natrix.goto_room(self.room_name)
-##
+
 
 class Btn_gn(natrix.predmet.PredmetSprite):
     """broj odgovora

@@ -35,20 +35,18 @@ while True:
                 for predmet in natrix.group_sprite:
                     if predmet.rect.collidepoint(event.pos):
                         # original
-#                        predmet.lmb_down()
-#                        break
-                        # patch da se nemore stisnut na botune dokle se izgovara zadatak
+                        # predmet.lmb_down()
+                        # break
+                        # patch
+                        # Nemore stisnut na botune dokle se izgovara zadatak
                         if type(predmet) == data.fridge.Goi:
                             predmet.lmb_down()
-                            break
                         elif not(natrix.kanal.get_busy()):
                             predmet.lmb_down()
-                            break
+                        break
 
         if event.type == 25:
-#            print('Mjuzik')
             natrix.kond.update_queue()
-
 
     natrix.step()
     natrix.draw()
