@@ -241,7 +241,7 @@ natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 650),
                                                   'image_index': 6}))
 
 natrix.rooms['room_options'].clsarg.append((Full_screen, {'topleft': (1450, 50),
-                                                    'image_index': 29}))
+                                                          'image_index': 29}))
 # room res =================
 natrix.rooms['room_res'].static_image = 'option'
 natrix.rooms['room_res'].clsarg.append((Goi, {'topleft': (1450, 750),
@@ -260,16 +260,16 @@ natrix.rooms['room_opt_1'].clsarg.append((Btn_popravi, {'topleft': (1450, 750),
 # room game options 2 =================
 natrix.rooms['room_opt_2'].static_image = 'option'
 natrix.rooms['room_opt_2'].clsarg.append((Goi, {'topleft': (1450, 750),
-                                            'room_name': 'room_options',
-                                            'sprite': natrix.sprites['ikone'],
-                                            'image_index': 7}))
+                                                'room_name': 'room_options',
+                                                'sprite': natrix.sprites['ikone'],
+                                                'image_index': 7}))
 # room game options 3 =================
 natrix.rooms['room_opt_3'].static_image = 'option'
 natrix.rooms['room_opt_3'].clsarg.append((Btn_popravi, {'topleft': (1450, 750),
-                                            'room_name': 'room_options',
-                                            'sprite': natrix.sprites['ikone'],
-                                            'image_index': 7,
-                                            'game': 3}))
+                                                        'room_name': 'room_options',
+                                                        'sprite': natrix.sprites['ikone'],
+                                                        'image_index': 7,
+                                                        'game': 3}))
 
 import data.game_one
 import data.game_two
