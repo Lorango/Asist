@@ -147,6 +147,32 @@ class Opis(natrix.predmet.PredmetSprite):
         self.image_index = image_index
 
 
+class Btn_op_dwell(natrix.predmet.PredmetSprite):
+    """pali gasi opciju
+    Postoji klon i u "game_options.py"
+
+    """
+    def __init__(self,
+                 topleft=(200, 200),
+                 game=0,
+                 opcija_id=1,
+                 image_index=0):
+
+        natrix.predmet.PredmetSprite.__init__(self,
+                                              natrix.sprites['ikone'],
+                                              topleft)
+
+        self.game = game
+        self.opcija_id = opcija_id
+        self.value = int(natrix.options[self.game][self.opcija_id].text)
+        self.image_index = self.value
+        natrix.group_sprite.add(self)
+
+    def step(self):
+        self.value = int(natrix.options[self.game][self.opcija_id].text)
+        self.image_index = self.value
+
+
 natrix.rooms['room_1'] = natrix.tools.Room()
 natrix.rooms['room_2'] = natrix.tools.Room()
 natrix.rooms['room_3'] = natrix.tools.Room()
@@ -242,6 +268,13 @@ natrix.rooms['room_options'].clsarg.append((Goi, {'topleft': (50, 650),
 
 natrix.rooms['room_options'].clsarg.append((Full_screen, {'topleft': (1450, 50),
                                                           'image_index': 29}))
+
+natrix.rooms['room_options'].clsarg.append((Btn_op_dwell, {'topleft': (1200, 50 + 10)}))
+
+natrix.rooms['room_options'].clsarg.append((Opis, {'topleft': (700, 50),
+                                                   'sprite': natrix.sprites['opis'],
+                                                   'image_index': 17}))
+
 # room res =================
 natrix.rooms['room_res'].static_image = 'option'
 natrix.rooms['room_res'].clsarg.append((Goi, {'topleft': (1450, 750),

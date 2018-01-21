@@ -4,6 +4,7 @@
             <width>1280</width>
             <height>720</height>
         </resolution>
+	<dwell>0</dwell>
     </natrix>
     <game name="game_one">
         <broj_izbora>3</broj_izbora>
@@ -15,8 +16,6 @@
     </game>
     <game name="game_two">
         <broj>3</broj>
-        <ph>2011</ph>
-        <ph>59900</ph>
     </game>
     <game name="game_three">
         <broj_izbora>3</broj_izbora>

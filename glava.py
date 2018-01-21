@@ -12,9 +12,13 @@ import data.fridge
 
 
 natrix.rooms['room_0'].start()
+
 # dwell parametri
-pos = [0, 0]
+radius = 30
+def_pos = [-100, -100]
+pos = def_pos
 dwell = True
+period = 1000
 
 #  Main loop.
 while True:
@@ -26,16 +30,34 @@ while True:
             pygame.quit()
             sys.exit(0)
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == 100:
+                if natrix.room_t == 'room_options':
+                    natrix.options[0][1].text = str(int(not(int(natrix.options[0][1].text))))
+                    if int(natrix.options[0][1].text):
+                        pygame.time.set_timer(26, period)
+                        pos = pygame.mouse.get_pos()
+                        dwell = True
+                    else:
+                        pygame.time.set_timer(26, 0)
+                        pos = def_pos
+                        dwell = False
+
         if event.type == pygame.MOUSEMOTION:
-            x, y = event.pos
-            r = ((pos[0] - x)**2 + (pos[1] - y)**2)**0.5  # filter
-            if r > 30:
-                pos = event.pos
-                dwell = True
+            if int(natrix.options[0][1].text):
+                x, y = event.pos
+                r = ((pos[0] - x)**2 + (pos[1] - y)**2)**0.5  # filter
+                if r > radius:
+                    pos = event.pos
+                    dwell = True
+                else:
+                    if dwell:
+                        pygame.time.set_timer(26, period)
+                        dwell = False
             else:
-                if dwell:
-                    pygame.time.set_timer(26, 1000)
-                    dwell = False
+                pygame.time.set_timer(26, 0)
+                pos = def_pos
+                dwell = False
 
 
         if event.type == 26:
@@ -52,7 +74,6 @@ while True:
                         break
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            print(event)
             if event.button == 1:
                 for predmet in natrix.group_sprite:
                     if predmet.rect.collidepoint(event.pos):
@@ -72,8 +93,9 @@ while True:
 
     natrix.step()
     natrix.draw()
+
     # dwel klik radius
-    pygame.draw.circle(natrix.screen, natrix.red, pos, 30, 5)
+    pygame.draw.circle(natrix.screen, natrix.red, pos, radius, 1)
 
 
     pygame.display.update()
