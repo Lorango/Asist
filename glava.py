@@ -95,7 +95,7 @@ while True:
     natrix.draw()
 
     # dwel klik radius
-    pygame.draw.circle(natrix.screen, natrix.red, pos, radius, 1)
+    # pygame.draw.circle(natrix.screen, natrix.red, pos, radius, 1)
 
 
     pygame.display.update()

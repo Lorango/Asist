@@ -92,7 +92,7 @@ class Slovo(natrix.predmet.PredmetSprite):
             self.parent.gen()
         else:
             natrix.kond.stop()
-            natrix.kanal.play(natrix.sounds['60'])
+            natrix.kanal.play(natrix.sounds['64'])
 
 
 natrix.rooms['room_1'].clsarg.append((Igra, {'topleft': (-450, 0)}))

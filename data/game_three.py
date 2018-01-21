@@ -144,7 +144,7 @@ class Slovo(natrix.predmet.PredmetSprite):
             self.parent.gen()
         else:
             natrix.kond.stop()
-            natrix.kanal.play(natrix.sounds['60'])
+            natrix.kanal.play(natrix.sounds['64'])
 
 
 class Pomoc(natrix.predmet.PredmetSprite):

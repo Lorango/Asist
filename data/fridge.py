@@ -28,7 +28,7 @@ natrix.Static_image('noc', 'grafics/noc.jpg', 1, (1.00, 1.00))
 natrix.Static_image('option', 'grafics/option.jpg', 1, (1.00, 1.00))
 
 # učitavanje zvukova
-for i in range(64):
+for i in range(65):
     file_name = 'sound/{}.ogg'.format(i)
     natrix.sounds[str(i)] = pygame.mixer.Sound(file_name)
 
